@@ -1,28 +1,37 @@
 import React, {ChangeEvent, useState} from 'react';
+import {TasksStateType} from "./App";
 
 export type FilterType = 'all' | 'complited' | 'active'
+
+export type TodolistType={
+    id: string
+    title: string
+    filter: FilterType
+}
 export type TaskType = {
     id: string
     title: string
     isDone: boolean
 }
 
-type PropsType = {
+type TodolistPropsType = {
+    todolistID:string
+    id:string
     title: string
     tasks: Array<TaskType>
-    removeTask: (id: string) => void
-    changeFilter: (filter: FilterType) => void
-    addTask: (title: string) => void
-    filter: FilterType
+    removeTask: (id: string,todolistID:string) => void
+    changeFilter: (filter: FilterType,todolistID: string) => void
+    addTask: (title: string,todolistID:string) => void
+    filter: string
 }
 
-export function Todolist(props: PropsType) {
+export function Todolist(props: TodolistPropsType) {
     const [title, setTitle] = useState<string>('')
     const [error, setError] = useState<boolean>(false)
 
     const addTask = () => {
         if (title.trim() !== '') {
-            props.addTask(title.trim())
+            props.addTask(title.trim(),props.todolistID)
             setTitle('')
             setError(false)
         } else {
@@ -39,9 +48,9 @@ export function Todolist(props: PropsType) {
         }
     }
     const removeTask = (id: string) => {
-        props.removeTask(id)
+        props.removeTask(id,props.todolistID)
     }
-    const changeFilter = (filter: FilterType) => props.changeFilter(filter)
+    const changeFilter = (filter: FilterType) => props.changeFilter(filter,props.id)
 
 
     return <div>
