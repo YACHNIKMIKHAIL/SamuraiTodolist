@@ -1,3 +1,7 @@
+.background {
+    background: url("./Components/Images/wallpaperflare.com_wallpaper (10).jpg") no-repeat center/cover;
+}
+
 .App {
     padding: 30px;
     display: flex;

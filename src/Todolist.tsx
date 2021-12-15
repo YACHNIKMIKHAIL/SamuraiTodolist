@@ -48,8 +48,7 @@ export function Todolist({
     const addTaskX = (title: string) => addTask(title, todolistID)
     const changeTodolistTitleX = (newTitle: string) => changeTodolistTitle(newTitle, todolistID)
 
-    return <div>
-        <TodolistCase>
+    return <TodolistCase>
             <h3><EditableSpan title={title} callback={changeTodolistTitleX}/>
                 <button onClick={removeTodolistX}>x</button>
             </h3>
@@ -75,7 +74,6 @@ export function Todolist({
                 </button>
             </div>
         </TodolistCase>
-    </div>
 }
 
 const TodolistCase = styled.div`
@@ -83,9 +81,11 @@ const TodolistCase = styled.div`
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  border: 3px solid black;
+  border: 1px solid rgba(99,110,101,0.8);
   background-size: contain;
   background-color: wheat;
   width: fit-content;
   padding: 20px;
+  border-radius: 30px;
+  background-color:rgba(231,221,201,0.3)
 `
