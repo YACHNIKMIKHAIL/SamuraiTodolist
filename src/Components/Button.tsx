@@ -1,14 +1,15 @@
 import React from 'react';
 
-type ButtonPropsType={
-    callback:()=>void
-    name:string
+type ButtonPropsType = {
+    callback: () => void
+    name: string
 }
-const Button = (props:ButtonPropsType) => {
-    const onClick=()=>props.callback()
+const Button = ({callback, name, ...props}: ButtonPropsType) => {
+    const onClick = () => callback()
+
     return (
         <div>
-            <button onClick={onClick}>{props.name}</button>
+            <button onClick={onClick}>{name}</button>
         </div>
     );
 };

@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent} from 'react';
 
 type InputPropsType = {
     callback: (newTitle: string) => void
@@ -7,21 +7,21 @@ type InputPropsType = {
     onKeyEnter: (e: React.KeyboardEvent<HTMLInputElement>) => void
     error: boolean
 }
-const Input = (props: InputPropsType) => {
-    const onChangeInput = (e:ChangeEvent<HTMLInputElement>) => {
-      props.onChangeInput(e)
+const Input = ({callback, title, onChangeInput, onKeyEnter, error, ...props}: InputPropsType) => {
+    const onChangeInputX = (e: ChangeEvent<HTMLInputElement>) => {
+        onChangeInput(e)
     }
-    const onKeyEnter = (e:React.KeyboardEvent<HTMLInputElement>) => {
-      props.onKeyEnter(e)
+    const onKeyEnterX = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        onKeyEnter(e)
     }
 
     return (
         <div>
-            <input className={props.error ? 'error' : ''}
-                   value={props.title}
-                   onChange={onChangeInput}
-                   onKeyPress={onKeyEnter}/>
-            {props.error ? <div className={'error-message'}>Нету тайтла!</div> : ''}
+            <input className={error ? 'error' : ''}
+                   value={title}
+                   onChange={onChangeInputX}
+                   onKeyPress={onKeyEnterX}/>
+            {error ? <div className={'error-message'}>Нету тайтла!</div> : ''}
         </div>
     );
 };

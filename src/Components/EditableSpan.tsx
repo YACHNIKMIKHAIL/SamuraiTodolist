@@ -15,7 +15,6 @@ const EditableSpan = (props: EditableSpanType) => {
     const desActivateEdit = () => {
         setEdit(false)
         props.callback(title)
-        console.log(props.title)
     }
     const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => setTitle(e.currentTarget.value)
 

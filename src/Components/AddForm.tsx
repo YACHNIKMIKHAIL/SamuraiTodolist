@@ -6,14 +6,14 @@ type AddFormType = {
     callback: (title: string) => void
     title: string
 }
-const AddForm = (props: AddFormType) => {
+const AddForm = ({callback, ...props}: AddFormType) => {
 
     const [title, setTitle] = useState<string>('')
     const [error, setError] = useState<boolean>(false)
 
     const addTask = () => {
         if (title.trim() !== '') {
-            props.callback(title.trim())
+            callback(title.trim())
             setTitle('')
             setError(false)
         } else {
@@ -24,11 +24,7 @@ const AddForm = (props: AddFormType) => {
         setTitle(e.currentTarget.value)
         setError(false)
     }
-    const onKeyEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === 'Enter') {
-            addTask()
-        }
-    }
+    const onKeyEnter = (e: React.KeyboardEvent<HTMLInputElement>) => e.key === 'Enter' ? addTask() : ''
 
     return (
         <div>

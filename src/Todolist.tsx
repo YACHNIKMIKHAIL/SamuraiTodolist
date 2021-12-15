@@ -1,11 +1,9 @@
-import React, {ChangeEvent, useState} from 'react';
-import {TasksStateType} from "./App";
+import React from 'react';
 import AddForm from "./Components/AddForm";
 import EditableSpan from "./Components/EditableSpan";
 import TasksMap from "./Components/TasksMap";
 
 export type FilterType = 'all' | 'complited' | 'active'
-
 export type TodolistType = {
     id: string
     title: string
@@ -30,40 +28,45 @@ type TodolistPropsType = {
     changeTodolistTitle: (newTitle: string, todolistID: string) => void
 }
 
-export function Todolist(props: TodolistPropsType) {
+export function Todolist({
+                             todolistID,
+                             title,
+                             tasks,
+                             removeTask,
+                             changeFilter,
+                             addTask,
+                             filter,
+                             removeTodolist,
+                             changeTaskTitle,
+                             changeTodolistTitle,
+                             ...props
+                         }: TodolistPropsType) {
 
-
-    const changeFilter = (filter: FilterType) => props.changeFilter(filter, props.todolistID)
-    const removeTodolist = () => props.removeTodolist(props.todolistID)
-
-    const addTask = (title: string) => props.addTask(title, props.todolistID)
-
-
-    const changeTodolistTitle = (newTitle: string) => props.changeTodolistTitle(newTitle, props.todolistID)
+    const changeFilterX = (filter: FilterType) => changeFilter(filter, todolistID)
+    const removeTodolistX = () => removeTodolist(todolistID)
+    const addTaskX = (title: string) => addTask(title, todolistID)
+    const changeTodolistTitleX = (newTitle: string) => changeTodolistTitle(newTitle, todolistID)
 
     return <div>
-        <h3><EditableSpan title={props.title} callback={changeTodolistTitle}/>
-            <button onClick={removeTodolist}>x</button>
+        <h3><EditableSpan title={title} callback={changeTodolistTitleX}/>
+            <button onClick={removeTodolistX}>x</button>
         </h3>
 
         <div>
-            <AddForm callback={addTask} title={props.title}/>
+            <AddForm callback={addTaskX} title={title}/>
         </div>
         <ul>
-            <TasksMap tasks={props.tasks}
-                      removeTask={props.removeTask}
-                      changeTaskTitle={props.changeTaskTitle}
-                      todolistID={props.todolistID}/>
+            <TasksMap tasks={tasks}
+                      removeTask={removeTask}
+                      changeTaskTitle={changeTaskTitle}
+                      todolistID={todolistID}/>
         </ul>
         <div>
-            <button className={props.filter === 'all' ? 'active-filter' : ''}
-                    onClick={() => changeFilter('all')}>All
+            <button className={filter === 'all' ? 'active-filter' : ''}
+                    onClick={() => changeFilterX('all')}>All
             </button>
-            <button className={props.filter === 'active' ? 'active-filter' : ''}
-                    onClick={() => changeFilter('active')}>Active
-            </button>
-            <button className={props.filter === 'complited' ? 'active-filter' : ''}
-                    onClick={() => changeFilter('complited')}>Completed
+            <button className={filter === 'active' ? 'active-filter' : ''}
+                    onClick={() => changeFilterX('complited')}>Completed
             </button>
         </div>
     </div>
