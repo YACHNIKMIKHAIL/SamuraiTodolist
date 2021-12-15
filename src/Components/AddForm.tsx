@@ -1,9 +1,9 @@
 import React, {ChangeEvent, useState} from 'react';
 
-type AddFormType={
-    callback:(title:string)=>void
+type AddFormType = {
+    callback: (title: string) => void
 }
-const AddForm = (props:AddFormType) => {
+const AddForm = (props: AddFormType) => {
     const [title, setTitle] = useState<string>('')
     const [error, setError] = useState<boolean>(false)
 
