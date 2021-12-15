@@ -1,11 +1,25 @@
 import React from 'react';
 import './App.css';
+import {Todolist} from './Todolist';
 import styled from "styled-components";
 
 function App() {
+
+    const tasks1 = [
+        {id: 1, title: "HTML&CSS", isDone: true},
+        {id: 2, title: "JS", isDone: true},
+        {id: 3, title: "ReactJS", isDone: false}
+    ]
+    const tasks2 = [
+        {id: 1, title: "Hello world", isDone: true},
+        {id: 2, title: "I am Happy", isDone: false},
+        {id: 3, title: "Yo", isDone: false}
+    ]
+
     return (
         <AppCase>
-
+            <Todolist title="What to learn" tasks={tasks1}/>
+            <Todolist title="Songs" tasks={tasks2}/>
         </AppCase>
     );
 }
@@ -13,7 +27,6 @@ function App() {
 export default App;
 
 const AppCase = styled.div`
-  height: 100vh;
-  overflow: auto;
-  //background: url("./Components/Images/wallpaperflare.com_wallpaper (9).jpg") no-repeat center/cover;
+  display: flex;
+  justify-content: space-evenly;
 `
