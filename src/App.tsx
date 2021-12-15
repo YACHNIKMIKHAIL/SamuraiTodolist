@@ -68,7 +68,7 @@ function App() {
 
     return (
         <AppCase>
-            <AddForm callback={addTodolist}/>
+            <AddForm callback={addTodolist} title={''}/>
 
            <TodolistsMap todolists={todolists}
                          changeTodolistTitle={changeTodolistTitle}

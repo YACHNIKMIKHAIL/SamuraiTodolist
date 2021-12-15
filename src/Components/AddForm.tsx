@@ -1,9 +1,13 @@
 import React, {ChangeEvent, useState} from 'react';
+import Input from "./Input";
+import Button from "./Button";
 
 type AddFormType = {
     callback: (title: string) => void
+    title: string
 }
 const AddForm = (props: AddFormType) => {
+
     const [title, setTitle] = useState<string>('')
     const [error, setError] = useState<boolean>(false)
 
@@ -28,12 +32,12 @@ const AddForm = (props: AddFormType) => {
 
     return (
         <div>
-            <input className={error ? 'error' : ''}
-                   value={title}
-                   onChange={onChangeInput}
-                   onKeyPress={onKeyEnter}/>
-            <button onClick={addTask}>+</button>
-            {error ? <div className={'error-message'}>Нету тайтла!</div> : ''}
+            <Input callback={addTask}
+                   title={title}
+                   onChangeInput={onChangeInput}
+                   onKeyEnter={onKeyEnter}
+                   error={error}/>
+            <Button callback={addTask} name={'+'}/>
         </div>
     );
 };

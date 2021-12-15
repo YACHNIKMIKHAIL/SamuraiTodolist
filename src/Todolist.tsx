@@ -47,7 +47,7 @@ export function Todolist(props: TodolistPropsType) {
         </h3>
 
         <div>
-            <AddForm callback={addTask}/>
+            <AddForm callback={addTask} title={props.title}/>
         </div>
         <ul>
             <TasksMap tasks={props.tasks}
