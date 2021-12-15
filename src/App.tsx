@@ -4,6 +4,7 @@ import {FilterType, TaskType, Todolist, TodolistType} from './Todolist';
 import styled from "styled-components";
 import {v1} from "uuid";
 import AddForm from "./Components/AddForm";
+import TodolistsMap from "./Components/TodolistsMap";
 
 
 export type TasksStateType = { [key: string]: Array<TaskType> }
@@ -28,7 +29,7 @@ function App() {
     ]
 
     let [tasks, setTasks] = useState<TasksStateType>(initTasks)
-    let [todolists, setTodolists] = useState<TodolistType[]>(initTodolists)
+    let [todolists, setTodolists] = useState<Array<TodolistType>>(initTodolists)
 
 
     const removeTask = (id: string, todolistID: string) => {
@@ -68,27 +69,16 @@ function App() {
     return (
         <AppCase>
             <AddForm callback={addTodolist}/>
-            {todolists.map(m => {
-                let tasksForTodo = tasks[m.id]
-                if (m.filter === 'active') {
-                    tasksForTodo = tasks[m.id].filter(f => !f.isDone)
-                }
-                if (m.filter === 'complited') {
-                    tasksForTodo = tasks[m.id].filter(f => f.isDone)
-                }
-                return <Todolist
-                    key={m.id}
-                    todolistID={m.id}
-                    title={m.title}
-                    tasks={tasksForTodo}
-                    removeTask={removeTask}
-                    changeFilter={changeFilter}
-                    addTask={addTask}
-                    filter={m.filter}
-                    removeTodolist={removeTodolist}
-                    changeTaskTitle={changeTaskTitle}
-                    changeTodolistTitle={changeTodolistTitle}/>
-            })}
+
+           <TodolistsMap todolists={todolists}
+                         changeTodolistTitle={changeTodolistTitle}
+                         changeTaskTitle={changeTaskTitle}
+                         addTask={addTask}
+                         changeFilter={changeFilter}
+                         removeTask={removeTask}
+                         removeTodolist={removeTodolist}
+                         tasks={tasks}
+            />
 
         </AppCase>
     );
