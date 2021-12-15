@@ -1,6 +1,7 @@
 import React, {ChangeEvent, useState} from 'react';
 import {TasksStateType} from "./App";
 import AddForm from "./Components/AddForm";
+import EditableSpan from "./Components/EditableSpan";
 
 export type FilterType = 'all' | 'complited' | 'active'
 
@@ -25,6 +26,7 @@ type TodolistPropsType = {
     addTask: (title: string, todolistID: string) => void
     filter: string
     removeTodolist: (todolistId: string) => void
+    changeTaskTitle:(newTitle: string, todolistID: string,id:string) => void
 }
 
 export function Todolist(props: TodolistPropsType) {
@@ -36,6 +38,8 @@ export function Todolist(props: TodolistPropsType) {
     const removeTodolist = () => props.removeTodolist(props.todolistID)
 
     const addTask=(title:string)=>props.addTask(title,props.todolistID)
+
+    const changeTaskTitle=(newTitle:string)=>props.changeTaskTitle(newTitle,props.todolistID,props.id)
 
 
     return <div>
@@ -50,7 +54,7 @@ export function Todolist(props: TodolistPropsType) {
             {props.tasks.map(m => <li key={m.id}>
                     <input className={m.isDone ? 'is-done' : ''}
                            type="checkbox" checked={m.isDone}/>
-                    <span>{m.title}</span>
+                    <EditableSpan title={m.title} callback={changeTaskTitle}/>
                     <button onClick={() => removeTask(m.id)}>x</button>
                 </li>
             )}
