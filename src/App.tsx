@@ -33,16 +33,17 @@ function App() {
         setFilter(filter)
     }
 
-    const addTask=(title:string)=>{
-        setTasks([{id: v1(), title: title, isDone: false},...tasks])
+    const addTask = (title: string) => {
+        setTasks([{id: v1(), title: title, isDone: false}, ...tasks])
     }
     return (
         <AppCase>
-            <Todolist title="What to learn"
-                      tasks={tasksForTodo}
-                      removeTask={removeTask}
-                      changeFilter={changeFilter}
-                      addTask={addTask}/>
+            <Todolist
+                title="What to learn"
+                tasks={tasksForTodo}
+                removeTask={removeTask}
+                changeFilter={changeFilter}
+                addTask={addTask}/>
         </AppCase>
     );
 }
