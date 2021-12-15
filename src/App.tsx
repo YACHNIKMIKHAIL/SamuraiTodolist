@@ -87,6 +87,7 @@ function App() {
 
 
     return (
+        <div className={'background'}>
         <AppCase>
             <AddForm callback={addTodolist} title={''}/>
             <TodolistsMap todolists={todolists}
@@ -99,6 +100,7 @@ function App() {
                           tasks={tasks}
             />
         </AppCase>
+        </div>
     );
 }
 
@@ -106,12 +108,13 @@ export default App;
 
 const AppCase = styled.div`
   height: 100vh;
-  display: inline-flex;
-  flex-direction: row;
-  border: 1px solid #000;
-  background-size: contain;
-  background: url(${img});
-  background-color: olive;
+  display: flex;
+  flex-direction: column;
+  justify-items: start;
+  // border: 1px solid #000;
+  // background-size: contain;
+  // background: url(${img});
+  // background-color: olive;
   overflow: auto;
   flex-wrap: nowrap;
 `

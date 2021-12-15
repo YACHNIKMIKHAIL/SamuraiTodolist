@@ -48,35 +48,41 @@ export function Todolist({
     const addTaskX = (title: string) => addTask(title, todolistID)
     const changeTodolistTitleX = (newTitle: string) => changeTodolistTitle(newTitle, todolistID)
 
-    return (<TodolistCase>
-        <h3><EditableSpan title={title} callback={changeTodolistTitleX}/>
-            <button onClick={removeTodolistX}>x</button>
-        </h3>
+    return <div>
+        <TodolistCase>
+            <h3><EditableSpan title={title} callback={changeTodolistTitleX}/>
+                <button onClick={removeTodolistX}>x</button>
+            </h3>
 
-        <div>
-            <AddForm callback={addTaskX} title={title}/>
-        </div>
-        <ul>
-            <TasksMap tasks={tasks}
-                      removeTask={removeTask}
-                      changeTaskTitle={changeTaskTitle}
-                      todolistID={todolistID}/>
-        </ul>
-        <div>
-            <button className={filter === 'all' ? 'active-filter' : ''}
-                    onClick={() => changeFilterX('all')}>All
-            </button>
-            <button className={filter === 'active' ? 'active-filter' : ''}
-                    onClick={() => changeFilterX('complited')}>Completed
-            </button>
-        </div>
-    </TodolistCase>)
+            <div>
+                <AddForm callback={addTaskX} title={title}/>
+            </div>
+            <ul>
+                <TasksMap tasks={tasks}
+                          removeTask={removeTask}
+                          changeTaskTitle={changeTaskTitle}
+                          todolistID={todolistID}/>
+            </ul>
+            <div>
+                <button className={filter === 'all' ? 'active-filter' : ''}
+                        onClick={() => changeFilterX('all')}>All
+                </button>
+                <button className={filter === 'active' ? 'active-filter' : ''}
+                        onClick={() => changeFilterX('active')}>Active
+                </button>
+                <button className={filter === 'complited' ? 'active-filter' : ''}
+                        onClick={() => changeFilterX('complited')}>Completed
+                </button>
+            </div>
+        </TodolistCase>
+    </div>
 }
 
 const TodolistCase = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  align-items: center;
   border: 3px solid black;
   background-size: contain;
   background-color: wheat;
