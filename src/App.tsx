@@ -3,6 +3,7 @@ import './App.css';
 import {FilterType, TaskType, Todolist, TodolistType} from './Todolist';
 import styled from "styled-components";
 import {v1} from "uuid";
+import AddForm from "./Components/AddForm";
 
 
 export type TasksStateType = { [key: string]: Array<TaskType> }
@@ -40,15 +41,21 @@ function App() {
     }
 
     const addTask = (title: string, todolistID: string) => {
-        setTasks({...tasks, [todolistID]: [{id: v1(), title: title, isDone: false}]})
+        setTasks({...tasks, [todolistID]: [{id: v1(), title: title, isDone: false},...tasks[todolistID]]})
     }
     const removeTodolist = (todolistID: string) => {
         setTodolists(todolists.filter(f => f.id !== todolistID))
+    }
+    const addTodolist = (title: string) => {
+        const newID=v1()
+        setTodolists([...todolists,{id: newID, title: title, filter:'all'}])
+        setTasks({...tasks,[newID]:[]})
     }
 
 
     return (
         <AppCase>
+            <AddForm  callback={addTodolist}/>
             {todolists.map(m => {
                 let tasksForTodo = tasks[m.id]
                 if (m.filter === 'active') {
@@ -61,7 +68,7 @@ function App() {
                     key={m.id}
                     id={m.id}
                     todolistID={m.id}
-                    title="What to learn"
+                    title={m.title}
                     tasks={tasksForTodo}
                     removeTask={removeTask}
                     changeFilter={changeFilter}
