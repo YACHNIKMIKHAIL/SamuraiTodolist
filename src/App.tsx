@@ -43,7 +43,8 @@ function App() {
                 tasks={tasksForTodo}
                 removeTask={removeTask}
                 changeFilter={changeFilter}
-                addTask={addTask}/>
+                addTask={addTask}
+                filter={filter}/>
         </AppCase>
     );
 }
