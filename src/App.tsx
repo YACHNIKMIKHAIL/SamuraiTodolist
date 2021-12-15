@@ -5,12 +5,13 @@ import styled from "styled-components";
 import {v1} from "uuid";
 
 
-export type TasksStateType= { [key: string]: Array<TaskType> }
+export type TasksStateType = { [key: string]: Array<TaskType> }
+
 function App() {
     const todolist1 = v1()
     const todolist2 = v1()
 
-    const initTasks:TasksStateType = {
+    const initTasks: TasksStateType = {
         [todolist1]: [{id: v1(), title: "HTML&CSS", isDone: true},
             {id: v1(), title: "JS", isDone: true},
             {id: v1(), title: "ReactJS", isDone: false}],
@@ -20,7 +21,7 @@ function App() {
     }
 
 
-    const initTodolists:TodolistType[] = [
+    const initTodolists: TodolistType[] = [
         {id: todolist1, title: "Leasn", filter: 'all'},
         {id: todolist2, title: "Buy", filter: 'all'}
     ]
@@ -29,8 +30,8 @@ function App() {
     const [todolists, setTodolists] = useState<TodolistType[]>(initTodolists)
 
 
-    const removeTask = (id: string,todolistID: string) => {
-        setTasks({...tasks,[todolistID]:tasks[todolistID].filter(f => f.id !== id)})
+    const removeTask = (id: string, todolistID: string) => {
+        setTasks({...tasks, [todolistID]: tasks[todolistID].filter(f => f.id !== id)})
     }
 
 
@@ -38,9 +39,14 @@ function App() {
         setTodolists(todolists.map(m => m.id === todolistID ? {...m, filter: filter} : m))
     }
 
-    const addTask = (title: string,todolistID: string) => {
-        setTasks({...tasks,[todolistID]:[{id: v1(), title: title, isDone: false}]})
+    const addTask = (title: string, todolistID: string) => {
+        setTasks({...tasks, [todolistID]: [{id: v1(), title: title, isDone: false}]})
     }
+    const removeTodolist = (todolistID: string) => {
+        setTodolists(todolists.filter(f => f.id !== todolistID))
+    }
+
+
     return (
         <AppCase>
             {todolists.map(m => {
@@ -60,7 +66,8 @@ function App() {
                     removeTask={removeTask}
                     changeFilter={changeFilter}
                     addTask={addTask}
-                    filter={m.filter}/>
+                    filter={m.filter}
+                    removeTodolist={removeTodolist}/>
             })}
 
         </AppCase>

@@ -3,7 +3,7 @@ import {TasksStateType} from "./App";
 
 export type FilterType = 'all' | 'complited' | 'active'
 
-export type TodolistType={
+export type TodolistType = {
     id: string
     title: string
     filter: FilterType
@@ -15,14 +15,15 @@ export type TaskType = {
 }
 
 type TodolistPropsType = {
-    todolistID:string
-    id:string
+    todolistID: string
+    id: string
     title: string
     tasks: Array<TaskType>
-    removeTask: (id: string,todolistID:string) => void
-    changeFilter: (filter: FilterType,todolistID: string) => void
-    addTask: (title: string,todolistID:string) => void
+    removeTask: (id: string, todolistID: string) => void
+    changeFilter: (filter: FilterType, todolistID: string) => void
+    addTask: (title: string, todolistID: string) => void
     filter: string
+    removeTodolist: (todolistId: string) => void
 }
 
 export function Todolist(props: TodolistPropsType) {
@@ -31,7 +32,7 @@ export function Todolist(props: TodolistPropsType) {
 
     const addTask = () => {
         if (title.trim() !== '') {
-            props.addTask(title.trim(),props.todolistID)
+            props.addTask(title.trim(), props.todolistID)
             setTitle('')
             setError(false)
         } else {
@@ -48,13 +49,17 @@ export function Todolist(props: TodolistPropsType) {
         }
     }
     const removeTask = (id: string) => {
-        props.removeTask(id,props.todolistID)
+        props.removeTask(id, props.todolistID)
     }
-    const changeFilter = (filter: FilterType) => props.changeFilter(filter,props.id)
+    const changeFilter = (filter: FilterType) => props.changeFilter(filter, props.id)
+    const removeTodolist = () => props.removeTodolist(props.todolistID)
 
 
     return <div>
-        <h3>{props.title}</h3>
+        <h3>{props.title}
+            <button onClick={removeTodolist}>x</button>
+        </h3>
+
         <div>
             <input className={error ? 'error' : ''}
                    value={title}
