@@ -5,7 +5,7 @@ import styled from "styled-components";
 import {v1} from "uuid";
 import AddForm from "./Components/AddForm";
 import TodolistsMap from "./Components/TodolistsMap";
-
+import img from './Components/Images/wallpaperflare.com_wallpaper (9).jpg'
 
 export type TasksStateType = { [key: string]: Array<TaskType> }
 
@@ -15,6 +15,13 @@ function App() {
 
     let initTodolists: TodolistType[] = [
         {id: todolist1, title: "Что учить?", filter: 'all'},
+        {id: todolist2, title: "Что покупать?", filter: 'all'},
+        {id: todolist2, title: "Что покупать?", filter: 'all'},
+        {id: todolist2, title: "Что покупать?", filter: 'all'},
+        {id: todolist2, title: "Что покупать?", filter: 'all'},
+        {id: todolist2, title: "Что покупать?", filter: 'all'},
+        {id: todolist2, title: "Что покупать?", filter: 'all'},
+        {id: todolist2, title: "Что покупать?", filter: 'all'},
         {id: todolist2, title: "Что покупать?", filter: 'all'}
     ]
 
@@ -22,6 +29,21 @@ function App() {
         [todolist1]: [{id: v1(), title: "HTML&CSS", isDone: false},
             {id: v1(), title: "JS", isDone: false},
             {id: v1(), title: "ReactJS", isDone: true}],
+        [todolist2]: [{id: v1(), title: "Молочко", isDone: false},
+            {id: v1(), title: "Кефирчик", isDone: true},
+            {id: v1(), title: "Хлеб", isDone: false}],
+        [todolist2]: [{id: v1(), title: "Молочко", isDone: false},
+            {id: v1(), title: "Кефирчик", isDone: true},
+            {id: v1(), title: "Хлеб", isDone: false}],
+        [todolist2]: [{id: v1(), title: "Молочко", isDone: false},
+            {id: v1(), title: "Кефирчик", isDone: true},
+            {id: v1(), title: "Хлеб", isDone: false}],
+        [todolist2]: [{id: v1(), title: "Молочко", isDone: false},
+            {id: v1(), title: "Кефирчик", isDone: true},
+            {id: v1(), title: "Хлеб", isDone: false}],
+        [todolist2]: [{id: v1(), title: "Молочко", isDone: false},
+            {id: v1(), title: "Кефирчик", isDone: true},
+            {id: v1(), title: "Хлеб", isDone: false}],
         [todolist2]: [{id: v1(), title: "Молочко", isDone: false},
             {id: v1(), title: "Кефирчик", isDone: true},
             {id: v1(), title: "Хлеб", isDone: false}]
@@ -83,6 +105,13 @@ function App() {
 export default App;
 
 const AppCase = styled.div`
-  display: flex;
-  justify-content: space-evenly;
+  height: 100vh;
+  display: inline-flex;
+  flex-direction: row;
+  border: 1px solid #000;
+  background-size: contain;
+  background: url(${img});
+  background-color: olive;
+  overflow: auto;
+  flex-wrap: nowrap;
 `

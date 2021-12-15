@@ -2,6 +2,7 @@ import React from 'react';
 import AddForm from "./Components/AddForm";
 import EditableSpan from "./Components/EditableSpan";
 import TasksMap from "./Components/TasksMap";
+import styled from "styled-components";
 
 export type FilterType = 'all' | 'complited' | 'active'
 export type TodolistType = {
@@ -47,7 +48,7 @@ export function Todolist({
     const addTaskX = (title: string) => addTask(title, todolistID)
     const changeTodolistTitleX = (newTitle: string) => changeTodolistTitle(newTitle, todolistID)
 
-    return <div>
+    return (<TodolistCase>
         <h3><EditableSpan title={title} callback={changeTodolistTitleX}/>
             <button onClick={removeTodolistX}>x</button>
         </h3>
@@ -69,5 +70,16 @@ export function Todolist({
                     onClick={() => changeFilterX('complited')}>Completed
             </button>
         </div>
-    </div>
+    </TodolistCase>)
 }
+
+const TodolistCase = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  border: 3px solid black;
+  background-size: contain;
+  background-color: wheat;
+  width: fit-content;
+  padding: 20px;
+`
