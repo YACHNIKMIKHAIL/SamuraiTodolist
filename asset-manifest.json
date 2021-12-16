@@ -1,15 +1,14 @@
 {
   "files": {
-    "main.css": "/SamuraiTodolist/static/css/main.636b0f05.css",
-    "main.js": "/SamuraiTodolist/static/js/main.c0e4a6fe.js",
+    "main.css": "/SamuraiTodolist/static/css/main.86e61b90.css",
+    "main.js": "/SamuraiTodolist/static/js/main.cb2702c5.js",
     "static/media/wallpaperflare.com_wallpaper (10).jpg": "/SamuraiTodolist/static/media/wallpaperflare.com_wallpaper (10).f86737a6d854ddea26d5.jpg",
-    "static/media/wallpaperflare.com_wallpaper (9).jpg": "/SamuraiTodolist/static/media/wallpaperflare.com_wallpaper (9).590cd021666b73391ac9.jpg",
     "index.html": "/SamuraiTodolist/index.html",
-    "main.636b0f05.css.map": "/SamuraiTodolist/static/css/main.636b0f05.css.map",
-    "main.c0e4a6fe.js.map": "/SamuraiTodolist/static/js/main.c0e4a6fe.js.map"
+    "main.86e61b90.css.map": "/SamuraiTodolist/static/css/main.86e61b90.css.map",
+    "main.cb2702c5.js.map": "/SamuraiTodolist/static/js/main.cb2702c5.js.map"
   },
   "entrypoints": [
-    "static/css/main.636b0f05.css",
-    "static/js/main.c0e4a6fe.js"
+    "static/css/main.86e61b90.css",
+    "static/js/main.cb2702c5.js"
   ]
 }
