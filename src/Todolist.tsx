@@ -85,19 +85,22 @@ const TodolistCase = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid rgba(99, 110, 101, 0.8);
-  background-color: wheat;
+  border: 3px solid rgba(99, 110, 101, 0.6);
+  //background-color: wheat;
   width: 330px;
   border-radius: 30px;
-  background-color: rgba(231, 221, 201, 0.3);
+  background-color: rgba(231, 221, 201, 0.4);
   margin: 5px;
-
+  height: fit-content;
 `
 const TitleCase = styled.h3`
   width: 90%;
+  height: fit-content;
   display: flex;
   justify-content: center;
-  font-size: 40px;
+  align-items: center;
+  font-size: 30px;
+  color: whitesmoke;
 `
 const AddFormCase = styled.h3`
   width: 330px;
@@ -110,10 +113,10 @@ const TasksMapCase = styled.h3`
   flex-wrap: nowrap;
   overflow: auto;
   font-size: 20px;
-
 `
 const ButtonCase = styled.h3`
   display: flex;
   flex-direction: row;
+  align-items: center;
   height: 30px;
 `

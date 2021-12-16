@@ -35,7 +35,7 @@ const AddForm = ({callback, ...props}: AddFormType) => {
                    onChangeInput={onChangeInput}
                    onKeyEnter={onKeyEnter}
                    error={error}/>
-            <ButtonX callback={addTask} name={'+'}/>
+            <ButtonX callback={addTask} name={'Add'}/>
         </FormCase>
     );
 };
@@ -43,5 +43,9 @@ const AddForm = ({callback, ...props}: AddFormType) => {
 export default AddForm;
 
 const FormCase = styled.div`
- 
+  width: 70%;
+  height:65% ;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `

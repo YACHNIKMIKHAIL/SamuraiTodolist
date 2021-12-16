@@ -24,7 +24,7 @@ export const TodolistsMap = ({
                                  ...props
                              }: TodolistsMapPropsType) => {
     return (
-        <div>
+        <>
             {props.todolists.map(m => {
                 let tasksForTodo = tasks[m.id]
                 if (m.filter === 'active') {
@@ -49,7 +49,7 @@ export const TodolistsMap = ({
                     changeCheckbox={props.changeCheckbox}/>
             })
             }
-        </div>
+        </>
     );
 };
 
