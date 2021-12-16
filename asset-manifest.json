@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/SamuraiTodolist/static/css/main.86e61b90.css",
-    "main.js": "/SamuraiTodolist/static/js/main.cb2702c5.js",
+    "main.js": "/SamuraiTodolist/static/js/main.3bbd7930.js",
     "static/media/wallpaperflare.com_wallpaper (10).jpg": "/SamuraiTodolist/static/media/wallpaperflare.com_wallpaper (10).f86737a6d854ddea26d5.jpg",
     "index.html": "/SamuraiTodolist/index.html",
     "main.86e61b90.css.map": "/SamuraiTodolist/static/css/main.86e61b90.css.map",
-    "main.cb2702c5.js.map": "/SamuraiTodolist/static/js/main.cb2702c5.js.map"
+    "main.3bbd7930.js.map": "/SamuraiTodolist/static/js/main.3bbd7930.js.map"
   },
   "entrypoints": [
     "static/css/main.86e61b90.css",
-    "static/js/main.cb2702c5.js"
+    "static/js/main.3bbd7930.js"
   ]
 }
