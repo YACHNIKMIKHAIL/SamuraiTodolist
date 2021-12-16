@@ -1,4 +1,5 @@
 import React, {ChangeEvent, useState} from 'react';
+import styled from "styled-components";
 
 type EditableSpanType = {
     title: string
@@ -22,7 +23,6 @@ const EditableSpan = (props: EditableSpanType) => {
         edit
             ? <input value={title} onChange={onChangeInput} onBlur={desActivateEdit} autoFocus/>
             : <span onDoubleClick={activateEdit}>{props.title}</span>
-
     );
 };
 

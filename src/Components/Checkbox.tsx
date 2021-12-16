@@ -1,5 +1,7 @@
 import React, {ChangeEvent} from 'react';
 import CheckboxX from '@mui/material/Checkbox';
+import {styled} from "@mui/material";
+
 
 type CheckboxPropsType={
     isDone:boolean
@@ -9,9 +11,9 @@ const Checkbox = (props:CheckboxPropsType) => {
     const onChangeCheckbox = (e: ChangeEvent<HTMLInputElement>) => {
       props.callback(e)
     }
-    const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+
     return (
-        <CheckboxX {...label} onChange={(e)=>onChangeCheckbox(e)}/>
+        <CheckboxX  onChange={(e)=>onChangeCheckbox(e)}/>
 
 
         // <input type="checkbox" checked={props.isDone}
