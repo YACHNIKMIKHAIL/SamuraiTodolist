@@ -4,7 +4,7 @@ import {Fingerprint} from "@mui/icons-material";
 
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
-import {Button} from "@mui/material";
+import {Button, rgbToHex} from "@mui/material";
 
 type ButtonPropsType = {
     callback: () => void
@@ -26,17 +26,38 @@ const ButtonX = ({callback, name, ...props}: ButtonPropsType) => {
             </IconButton>
         }
         if (name === 'All') {
-            return <Button variant="outlined" size="small" onClick={onClick}>
+            if(props.className){
+                return <Button variant="contained" onClick={onClick}
+                               style={{backgroundColor:"#A4644F"}}
+                >{name}</Button>
+            }
+            return <Button variant="outlined" size="small" onClick={onClick}
+                           style={{color:"#121819", border:"none"}}
+            >
                 {name}
             </Button>
         }
         if (name === 'Active') {
-            return <Button variant="outlined" size="small" onClick={onClick}>
+            if(props.className){
+                return <Button variant="contained" onClick={onClick}
+                               style={{backgroundColor:"#A4644F"}}
+                >{name}</Button>
+            }
+            return <Button variant="outlined" size="small" onClick={onClick}
+                           style={{color:"#121819", border:"none"}}
+            >
                 {name}
             </Button>
         }
         if (name === 'Complited') {
-            return <Button variant="outlined" size="small" onClick={onClick}>
+            if(props.className){
+                return <Button variant="contained" onClick={onClick}
+                               style={{backgroundColor:"#A4644F"}}
+                >{name}</Button>
+            }
+            return <Button variant="outlined" size="small" onClick={onClick}
+                           style={{color:"#121819", border:"none"}}
+            >
                 {name}
             </Button>
         }

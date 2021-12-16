@@ -100,7 +100,7 @@ const TitleCase = styled.h3`
   justify-content: center;
   align-items: center;
   font-size: 30px;
-  color: whitesmoke;
+  color: #DFD5BE;
 `
 const AddFormCase = styled.h3`
   width: 330px;

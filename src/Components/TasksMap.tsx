@@ -50,7 +50,7 @@ const LiCase = styled.li`
 const CheckboxCase = styled.li`
 `
 const EditableSpanCase = styled.li`
-  color: black;
+  color: #121819;
   display: flex;
 `
 const ButtonXCase = styled.li`
