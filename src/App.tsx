@@ -85,21 +85,24 @@ function App() {
         title: newTitle
     } : m)])
 
+    const changeCheckbox = (isDone: boolean, id: string, todolistID: string) => setTasks({...tasks, [todolistID]: tasks[todolistID].map(m => m.id === id ? {...m, isDone} : m)})
+
 
     return (
         <div className={'background'}>
-        <AppCase>
-            <AddForm callback={addTodolist} title={''}/>
-            <TodolistsMap todolists={todolists}
-                          changeTodolistTitle={changeTodolistTitle}
-                          changeTaskTitle={changeTaskTitle}
-                          addTask={addTask}
-                          changeFilter={changeFilter}
-                          removeTask={removeTask}
-                          removeTodolist={removeTodolist}
-                          tasks={tasks}
-            />
-        </AppCase>
+            <AppCase>
+                <AddForm callback={addTodolist} title={''}/>
+                <TodolistsMap todolists={todolists}
+                              changeTodolistTitle={changeTodolistTitle}
+                              changeTaskTitle={changeTaskTitle}
+                              addTask={addTask}
+                              changeFilter={changeFilter}
+                              removeTask={removeTask}
+                              removeTodolist={removeTodolist}
+                              tasks={tasks}
+                              changeCheckbox={changeCheckbox}
+                />
+            </AppCase>
         </div>
     );
 }
@@ -108,12 +111,13 @@ export default App;
 
 const AppCase = styled.div`
   height: 100vh;
+  width: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-items: start;
   // border: 1px solid #000;
   // background-size: contain;
-  // background: url(${img});
+    // background: url(${img});
   // background-color: olive;
   overflow: auto;
   flex-wrap: nowrap;

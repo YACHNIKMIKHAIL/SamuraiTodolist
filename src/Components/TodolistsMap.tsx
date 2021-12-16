@@ -11,6 +11,7 @@ type TodolistsMapPropsType = {
     changeTaskTitle: (newTitle: string, todolistID: string, id: string) => void
     changeTodolistTitle: (newTitle: string, todolistID: string) => void
     todolists: Array<TodolistType>
+    changeCheckbox:(isDone:boolean,id:string,todolistID:string)=>void
 }
 export const TodolistsMap = ({
                                  tasks,
@@ -44,7 +45,8 @@ export const TodolistsMap = ({
                     filter={m.filter}
                     removeTodolist={removeTodolist}
                     changeTaskTitle={changeTaskTitle}
-                    changeTodolistTitle={changeTodolistTitle}/>
+                    changeTodolistTitle={changeTodolistTitle}
+                    changeCheckbox={props.changeCheckbox}/>
             })
             }
         </div>

@@ -27,6 +27,7 @@ type TodolistPropsType = {
     removeTodolist: (todolistId: string) => void
     changeTaskTitle: (newTitle: string, todolistID: string, id: string) => void
     changeTodolistTitle: (newTitle: string, todolistID: string) => void
+    changeCheckbox:(isDone:boolean,id:string,todolistID:string)=>void
 }
 
 export function Todolist({
@@ -60,7 +61,8 @@ export function Todolist({
                 <TasksMap tasks={tasks}
                           removeTask={removeTask}
                           changeTaskTitle={changeTaskTitle}
-                          todolistID={todolistID}/>
+                          todolistID={todolistID}
+                          changeCheckbox={props.changeCheckbox}/>
             </ul>
             <div>
                 <button className={filter === 'all' ? 'active-filter' : ''}
