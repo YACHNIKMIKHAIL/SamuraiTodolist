@@ -21,25 +21,72 @@ function App() {
         {id: todolist2, title: "Что покупать?", filter: 'all'},
         {id: todolist3, title: "Что посмотреть?", filter: 'all'},
         {id: todolist4, title: "Что сходить?", filter: 'all'},
+        {id: todolist5, title: "Что пить?", filter: 'all'},
+
+
+        {id: todolist1, title: "Что учить?", filter: 'all'},
+        {id: todolist2, title: "Что покупать?", filter: 'all'},
+        {id: todolist3, title: "Что посмотреть?", filter: 'all'},
+        {id: todolist4, title: "Что сходить?", filter: 'all'},
         {id: todolist5, title: "Что пить?", filter: 'all'}
     ]
 
     let initTasks: TasksStateType = {
         [todolist1]: [{id: v1(), title: "HTML&CSS", isDone: false},
             {id: v1(), title: "JS", isDone: false},
+            {id: v1(), title: "ReactJS", isDone: true},
+
+            {id: v1(), title: "HTML&CSS", isDone: false},
+            {id: v1(), title: "JS", isDone: false},
+            {id: v1(), title: "ReactJS", isDone: true},
+            {id: v1(), title: "HTML&CSS", isDone: false},
+            {id: v1(), title: "JS", isDone: false},
             {id: v1(), title: "ReactJS", isDone: true}],
         [todolist2]: [{id: v1(), title: "Молочко", isDone: false},
             {id: v1(), title: "Кефирчик", isDone: true},
+            {id: v1(), title: "Хлеб", isDone: false},
+
+            {id: v1(), title: "Молочко", isDone: false},
+            {id: v1(), title: "Кефирчик", isDone: true},
+            {id: v1(), title: "Хлеб", isDone: false},
+            {id: v1(), title: "Молочко", isDone: false},
+            {id: v1(), title: "Кефирчик", isDone: true},
             {id: v1(), title: "Хлеб", isDone: false}],
         [todolist3]: [{id: v1(), title: "Мульты", isDone: false},
+            {id: v1(), title: "Видосик по нативке", isDone: true},
+            {id: v1(), title: "Просто закрыть глаза", isDone: false},
+
+            {id: v1(), title: "Мульты", isDone: false},
             {id: v1(), title: "Видосик по нативке", isDone: true},
             {id: v1(), title: "Просто закрыть глаза", isDone: false}],
         [todolist4]: [{id: v1(), title: "Просто прогулка", isDone: false},
             {id: v1(), title: "Игровая", isDone: false},
             {id: v1(), title: "Гости", isDone: false},
+            {id: v1(), title: "Домооооой", isDone: true},
+
+            {id: v1(), title: "Просто прогулка", isDone: false},
+            {id: v1(), title: "Игровая", isDone: false},
+            {id: v1(), title: "Гости", isDone: false},
+            {id: v1(), title: "Домооооой", isDone: true},
+            {id: v1(), title: "Просто прогулка", isDone: false},
+            {id: v1(), title: "Игровая", isDone: false},
+            {id: v1(), title: "Гости", isDone: false},
+            {id: v1(), title: "Домооооой", isDone: true},
+            {id: v1(), title: "Просто прогулка", isDone: false},
+            {id: v1(), title: "Игровая", isDone: false},
+            {id: v1(), title: "Гости", isDone: false},
             {id: v1(), title: "Домооооой", isDone: true}],
         [todolist5]: [{id: v1(), title: "Чай", isDone: true},
-            {id: v1(), title: "Чай", isDone: true}]
+            {id: v1(), title: "Чай", isDone: true},
+
+
+            {id: v1(), title: "Чай", isDone: true},
+            {id: v1(), title: "Чай", isDone: true},
+            {id: v1(), title: "Чай", isDone: true},
+            {id: v1(), title: "Чай", isDone: true}],
+
+
+
     }
 
     let [tasks, setTasks] = useState<TasksStateType>(initTasks)
@@ -119,11 +166,11 @@ const BobyCase = styled.div`
   margin: 0 10px;
   display:inline-flex;
   flex-direction: row-reverse;
-  align-items: self-end;
   overflow: auto;
   flex-wrap: wrap;
   height: 95vh;
   justify-content: space-around;
+  align-items:flex-end;
 `
 const FormCase = styled.div`
   height: 10vh;
@@ -134,6 +181,7 @@ const FormCase = styled.div`
   align-items: center;
   background-color: rgba(231, 221, 201, 0.3);
   font-size: 40px;
-  color: rgba(142,86,71,0.7);
+  color: #2d2206;
+  //color: rgba(142,86,71,0.7);
   font-weight: bold;
 `

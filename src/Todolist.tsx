@@ -118,5 +118,6 @@ const ButtonCase = styled.h3`
   display: flex;
   flex-direction: row;
   align-items: center;
-  height: 30px;
+  height: 20%;
+  margin: 5px;
 `

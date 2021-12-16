@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, rgbToHex} from "@mui/material";
+import {Button} from "@mui/material";
 import styled from "styled-components";
 
 type ButtonPropsType = {
@@ -14,11 +14,13 @@ const ButtonX = ({callback, name, ...props}: ButtonPropsType) => {
         <>
             <ButtonCase className={props.className}
                          onClick={onClick}>{name}</ButtonCase>
+
             {/*<Button variant="outlined"*/}
             {/*        onClick={onClick}*/}
             {/*        style={{maxWidth: '120px', maxHeight: '30px', minWidth: '10px', minHeight: '10px',*/}
             {/*            color:"white", backgroundColor: "rgba(58,68,66,0.4)"}}*/}
             {/*>{name}</Button>*/}
+
         </>
     );
 };
@@ -35,4 +37,5 @@ const ButtonCase = styled("button")`
   border-radius: 7px;
   display: flex;
   align-items: center;
+  
 `
