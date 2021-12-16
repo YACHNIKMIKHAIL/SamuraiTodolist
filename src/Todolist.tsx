@@ -4,6 +4,7 @@ import EditableSpan from "./Components/EditableSpan";
 import TasksMap from "./Components/TasksMap";
 import styled from "styled-components";
 import Button from "./Components/Button";
+import ButtonX from "./Components/Button";
 
 export type FilterType = 'all' | 'complited' | 'active'
 export type TodolistType = {
@@ -70,11 +71,11 @@ export function Todolist({
         </TasksMapCase>
 
         <ButtonCase>
-            <Button callback={() => changeFilterX('all')} name={'All'}
+            <ButtonX callback={() => changeFilterX('all')} name={'All'}
                     className={filter === 'all' ? 'active-filter' : ''}/>
-            <Button callback={() => changeFilterX('active')} name={'Active'}
+            <ButtonX callback={() => changeFilterX('active')} name={'Active'}
                     className={filter === 'active' ? 'active-filter' : ''}/>
-            <Button callback={() => changeFilterX('complited')} name={'Complited'}
+            <ButtonX callback={() => changeFilterX('complited')} name={'Complited'}
                     className={filter === 'complited' ? 'active-filter' : ''}/>
         </ButtonCase>
     </TodolistCase>

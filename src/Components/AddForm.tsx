@@ -1,6 +1,6 @@
 import React, {ChangeEvent, useState} from 'react';
 import Input from "./Input";
-import Button from "./Button";
+import ButtonX from "./Button";
 import styled from "styled-components";
 import img from "./Images/wallpaperflare.com_wallpaper (9).jpg";
 
@@ -35,7 +35,7 @@ const AddForm = ({callback, ...props}: AddFormType) => {
                    onChangeInput={onChangeInput}
                    onKeyEnter={onKeyEnter}
                    error={error}/>
-            <Button callback={addTask} name={'+'}/>
+            <ButtonX callback={addTask} name={'+'}/>
         </FormCase>
     );
 };

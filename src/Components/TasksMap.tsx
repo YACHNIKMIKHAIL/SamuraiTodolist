@@ -2,6 +2,7 @@ import React, {ChangeEvent} from 'react';
 import EditableSpan from "./EditableSpan";
 import {TaskType} from "../Todolist";
 import Checkbox from "./Checkbox";
+import ButtonX from "./Button";
 
 
 type TasksMapPropsType = {
@@ -22,7 +23,8 @@ const TasksMap = ({tasks, removeTask, changeTaskTitle, todolistID, ...props}: Ta
             {tasks.map(m => <li key={m.id} className={m.isDone ? 'is-done' : ''}>
                 <Checkbox isDone={m.isDone} callback={(e)=>ChangeCheckboxX(e,m.id)}/>
                     <EditableSpan title={m.title} callback={(e) => changeTaskTitleX(e, m.id)}/>
-                    <button onClick={() => removeTaskX(m.id)}>x</button>
+                    {/*<button onClick={() => removeTaskX(m.id)}>x</button>*/}
+                <ButtonX callback={() => removeTaskX(m.id)} name={'x'}/>
                 </li>
             )}
         </div>

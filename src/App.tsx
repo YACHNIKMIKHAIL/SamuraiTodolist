@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 import './App.css';
-import {FilterType, TaskType, Todolist, TodolistType} from './Todolist';
+import {FilterType, TaskType, TodolistType} from './Todolist';
 import styled from "styled-components";
 import {v1} from "uuid";
 import AddForm from "./Components/AddForm";
 import TodolistsMap from "./Components/TodolistsMap";
-import img from './Components/Images/wallpaperflare.com_wallpaper (9).jpg'
+
 
 export type TasksStateType = { [key: string]: Array<TaskType> }
 
@@ -15,13 +15,6 @@ function App() {
 
     let initTodolists: TodolistType[] = [
         {id: todolist1, title: "Что учить?", filter: 'all'},
-        {id: todolist2, title: "Что покупать?", filter: 'all'},
-        {id: todolist2, title: "Что покупать?", filter: 'all'},
-        {id: todolist2, title: "Что покупать?", filter: 'all'},
-        {id: todolist2, title: "Что покупать?", filter: 'all'},
-        {id: todolist2, title: "Что покупать?", filter: 'all'},
-        {id: todolist2, title: "Что покупать?", filter: 'all'},
-        {id: todolist2, title: "Что покупать?", filter: 'all'},
         {id: todolist2, title: "Что покупать?", filter: 'all'}
     ]
 
@@ -31,46 +24,7 @@ function App() {
             {id: v1(), title: "ReactJS", isDone: true}],
         [todolist2]: [{id: v1(), title: "Молочко", isDone: false},
             {id: v1(), title: "Кефирчик", isDone: true},
-            {id: v1(), title: "Хлеб", isDone: false}],
-        [todolist2]: [{id: v1(), title: "Молочко", isDone: false},
-            {id: v1(), title: "Кефирчик", isDone: true},
-            {id: v1(), title: "Хлеб", isDone: false}],
-        [todolist2]: [{id: v1(), title: "Молочко", isDone: false},
-            {id: v1(), title: "Кефирчик", isDone: true},
-            {id: v1(), title: "Хлеб", isDone: false}],
-        [todolist2]: [{id: v1(), title: "Молочко", isDone: false},
-            {id: v1(), title: "Кефирчик", isDone: true},
-            {id: v1(), title: "Хлеб", isDone: false}],
-        [todolist2]: [{id: v1(), title: "Молочко", isDone: false},
-            {id: v1(), title: "Кефирчик", isDone: true},
-            {id: v1(), title: "Хлеб", isDone: false}],
-        [todolist2]: [{id: v1(), title: "Молочко", isDone: false},
-            {id: v1(), title: "Кефирчик", isDone: true},
-            {id: v1(), title: "Хлеб", isDone: false},
-            {id: v1(), title: "ReactJS", isDone: true},
-            {id: v1(), title: "ReactJS", isDone: true},
-            {id: v1(), title: "ReactJS", isDone: true},
-            {id: v1(), title: "ReactJS", isDone: true},
-            {id: v1(), title: "ReactJS", isDone: true},
-            {id: v1(), title: "ReactJS", isDone: true},
-            {id: v1(), title: "ReactJS", isDone: true},
-            {id: v1(), title: "ReactJS", isDone: true},
-            {id: v1(), title: "ReactJS", isDone: true},
-            {id: v1(), title: "ReactJS", isDone: true},
-            {id: v1(), title: "ReactJS", isDone: true},
-            {id: v1(), title: "ReactJS", isDone: true},
-            {id: v1(), title: "ReactJS", isDone: true},
-            {id: v1(), title: "ReactJS", isDone: true},
-            {id: v1(), title: "ReactJS", isDone: true},
-            {id: v1(), title: "ReactJS", isDone: true},
-            {id: v1(), title: "ReactJS", isDone: true},
-            {id: v1(), title: "ReactJS", isDone: true},
-            {id: v1(), title: "ReactJS", isDone: true},
-            {id: v1(), title: "ReactJS", isDone: true},
-            {id: v1(), title: "ReactJS", isDone: true},
-            {id: v1(), title: "ReactJS", isDone: true},
-            {id: v1(), title: "ReactJS", isDone: true},
-            {id: v1(), title: "ReactJS", isDone: true}]
+            {id: v1(), title: "Хлеб", isDone: false}]
     }
 
     let [tasks, setTasks] = useState<TasksStateType>(initTasks)
@@ -150,7 +104,6 @@ const AppCase = styled.div`
 `
 const BobyCase = styled.div`
   margin: 0 10px;
-  border: aqua 3px solid;
   display: inline-flex;
   flex-flow: row;
 `
