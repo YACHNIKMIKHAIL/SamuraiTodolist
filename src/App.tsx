@@ -46,7 +46,31 @@ function App() {
             {id: v1(), title: "Хлеб", isDone: false}],
         [todolist2]: [{id: v1(), title: "Молочко", isDone: false},
             {id: v1(), title: "Кефирчик", isDone: true},
-            {id: v1(), title: "Хлеб", isDone: false}]
+            {id: v1(), title: "Хлеб", isDone: false},
+            {id: v1(), title: "ReactJS", isDone: true},
+            {id: v1(), title: "ReactJS", isDone: true},
+            {id: v1(), title: "ReactJS", isDone: true},
+            {id: v1(), title: "ReactJS", isDone: true},
+            {id: v1(), title: "ReactJS", isDone: true},
+            {id: v1(), title: "ReactJS", isDone: true},
+            {id: v1(), title: "ReactJS", isDone: true},
+            {id: v1(), title: "ReactJS", isDone: true},
+            {id: v1(), title: "ReactJS", isDone: true},
+            {id: v1(), title: "ReactJS", isDone: true},
+            {id: v1(), title: "ReactJS", isDone: true},
+            {id: v1(), title: "ReactJS", isDone: true},
+            {id: v1(), title: "ReactJS", isDone: true},
+            {id: v1(), title: "ReactJS", isDone: true},
+            {id: v1(), title: "ReactJS", isDone: true},
+            {id: v1(), title: "ReactJS", isDone: true},
+            {id: v1(), title: "ReactJS", isDone: true},
+            {id: v1(), title: "ReactJS", isDone: true},
+            {id: v1(), title: "ReactJS", isDone: true},
+            {id: v1(), title: "ReactJS", isDone: true},
+            {id: v1(), title: "ReactJS", isDone: true},
+            {id: v1(), title: "ReactJS", isDone: true},
+            {id: v1(), title: "ReactJS", isDone: true},
+            {id: v1(), title: "ReactJS", isDone: true}]
     }
 
     let [tasks, setTasks] = useState<TasksStateType>(initTasks)
@@ -85,23 +109,30 @@ function App() {
         title: newTitle
     } : m)])
 
-    const changeCheckbox = (isDone: boolean, id: string, todolistID: string) => setTasks({...tasks, [todolistID]: tasks[todolistID].map(m => m.id === id ? {...m, isDone} : m)})
+    const changeCheckbox = (isDone: boolean, id: string, todolistID: string) => setTasks({
+        ...tasks,
+        [todolistID]: tasks[todolistID].map(m => m.id === id ? {...m, isDone} : m)
+    })
 
 
     return (
         <div className={'background'}>
             <AppCase>
-                <AddForm callback={addTodolist} title={''}/>
-                <TodolistsMap todolists={todolists}
-                              changeTodolistTitle={changeTodolistTitle}
-                              changeTaskTitle={changeTaskTitle}
-                              addTask={addTask}
-                              changeFilter={changeFilter}
-                              removeTask={removeTask}
-                              removeTodolist={removeTodolist}
-                              tasks={tasks}
-                              changeCheckbox={changeCheckbox}
-                />
+                <BobyCase>
+                    <TodolistsMap todolists={todolists}
+                                  changeTodolistTitle={changeTodolistTitle}
+                                  changeTaskTitle={changeTaskTitle}
+                                  addTask={addTask}
+                                  changeFilter={changeFilter}
+                                  removeTask={removeTask}
+                                  removeTodolist={removeTodolist}
+                                  tasks={tasks}
+                                  changeCheckbox={changeCheckbox}
+                    />
+                </BobyCase>
+                <FormCase>
+                    <AddForm callback={addTodolist} title={''}/>
+                </FormCase>
             </AppCase>
         </div>
     );
@@ -113,12 +144,21 @@ const AppCase = styled.div`
   height: 100vh;
   width: 100%;
   display: flex;
-  flex-direction: row;
-  justify-items: start;
-  // border: 1px solid #000;
-  // background-size: contain;
-    // background: url(${img});
-  // background-color: olive;
+  flex-direction: column;
   overflow: auto;
   flex-wrap: nowrap;
+`
+const BobyCase = styled.div`
+  margin: 0 10px;
+  border: aqua 3px solid;
+  display: inline-flex;
+  flex-flow: row;
+`
+const FormCase = styled.div`
+  margin: 10px;
+  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(231, 221, 201, 0.3)
 `

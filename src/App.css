@@ -1,15 +1,19 @@
 .background {
     background: url("./Components/Images/wallpaperflare.com_wallpaper (10).jpg") no-repeat center/cover;
 }
-
-.App {
-    padding: 30px;
-    display: flex;
+*{
+    margin: 0;
+    padding: 0;
 }
 
-.App > div {
-    margin-right: 50px;
-}
+/*.App {*/
+/*    padding: 30px;*/
+/*    display: flex;*/
+/*}*/
+
+/*.App > div {*/
+/*    margin-right: 50px;*/
+/*}*/
 
 .error {
     border: red 1px solid;

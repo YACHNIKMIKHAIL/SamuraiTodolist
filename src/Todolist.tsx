@@ -3,6 +3,7 @@ import AddForm from "./Components/AddForm";
 import EditableSpan from "./Components/EditableSpan";
 import TasksMap from "./Components/TasksMap";
 import styled from "styled-components";
+import Button from "./Components/Button";
 
 export type FilterType = 'all' | 'complited' | 'active'
 export type TodolistType = {
@@ -27,7 +28,7 @@ type TodolistPropsType = {
     removeTodolist: (todolistId: string) => void
     changeTaskTitle: (newTitle: string, todolistID: string, id: string) => void
     changeTodolistTitle: (newTitle: string, todolistID: string) => void
-    changeCheckbox:(isDone:boolean,id:string,todolistID:string)=>void
+    changeCheckbox: (isDone: boolean, id: string, todolistID: string) => void
 }
 
 export function Todolist({
@@ -50,44 +51,68 @@ export function Todolist({
     const changeTodolistTitleX = (newTitle: string) => changeTodolistTitle(newTitle, todolistID)
 
     return <TodolistCase>
-            <h3><EditableSpan title={title} callback={changeTodolistTitleX}/>
-                <button onClick={removeTodolistX}>x</button>
-            </h3>
 
-            <div>
-                <AddForm callback={addTaskX} title={title}/>
-            </div>
-            <ul>
-                <TasksMap tasks={tasks}
-                          removeTask={removeTask}
-                          changeTaskTitle={changeTaskTitle}
-                          todolistID={todolistID}
-                          changeCheckbox={props.changeCheckbox}/>
-            </ul>
-            <div>
-                <button className={filter === 'all' ? 'active-filter' : ''}
-                        onClick={() => changeFilterX('all')}>All
-                </button>
-                <button className={filter === 'active' ? 'active-filter' : ''}
-                        onClick={() => changeFilterX('active')}>Active
-                </button>
-                <button className={filter === 'complited' ? 'active-filter' : ''}
-                        onClick={() => changeFilterX('complited')}>Completed
-                </button>
-            </div>
-        </TodolistCase>
+        <TitleCase>
+            <EditableSpan title={title} callback={changeTodolistTitleX}/>
+            <Button callback={removeTodolistX} name={'x'}/>
+        </TitleCase>
+
+        <AddFormCase>
+            <AddForm callback={addTaskX} title={title}/>
+        </AddFormCase>
+
+        <TasksMapCase>
+            <TasksMap tasks={tasks}
+                      removeTask={removeTask}
+                      changeTaskTitle={changeTaskTitle}
+                      todolistID={todolistID}
+                      changeCheckbox={props.changeCheckbox}/>
+        </TasksMapCase>
+
+        <ButtonCase>
+            <Button callback={() => changeFilterX('all')} name={'All'}
+                    className={filter === 'all' ? 'active-filter' : ''}/>
+            <Button callback={() => changeFilterX('active')} name={'Active'}
+                    className={filter === 'active' ? 'active-filter' : ''}/>
+            <Button callback={() => changeFilterX('complited')} name={'Complited'}
+                    className={filter === 'complited' ? 'active-filter' : ''}/>
+        </ButtonCase>
+    </TodolistCase>
 }
 
 const TodolistCase = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
   align-items: center;
-  border: 1px solid rgba(99,110,101,0.8);
-  background-size: contain;
+  border: 1px solid rgba(99, 110, 101, 0.8);
   background-color: wheat;
-  width: fit-content;
-  padding: 20px;
+  width: 330px;
   border-radius: 30px;
-  background-color:rgba(231,221,201,0.3)
+  background-color: rgba(231, 221, 201, 0.3);
+  margin: 5px;
+
+`
+const TitleCase = styled.h3`
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  font-size: 40px;
+`
+const AddFormCase = styled.h3`
+  width: 330px;
+  display: flex;
+  justify-content: center;
+`
+const TasksMapCase = styled.h3`
+  max-height: 300px;
+  width: 90%;
+  flex-wrap: nowrap;
+  overflow: auto;
+  font-size: 20px;
+
+`
+const ButtonCase = styled.h3`
+  display: flex;
+  flex-direction: row;
+  height: 30px;
 `
