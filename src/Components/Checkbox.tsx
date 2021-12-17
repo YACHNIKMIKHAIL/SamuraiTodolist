@@ -13,7 +13,7 @@ const Checkbox = (props:CheckboxPropsType) => {
     }
 
     return (
-        <CheckboxX  onChange={(e)=>onChangeCheckbox(e)}/>
+        <CheckboxX value={props.isDone} onChange={(e)=>onChangeCheckbox(e)}/>
 
 
         // <input type="checkbox" checked={props.isDone}

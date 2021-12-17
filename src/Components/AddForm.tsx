@@ -35,7 +35,7 @@ const AddForm = ({callback, ...props}: AddFormType) => {
                    onChangeInput={onChangeInput}
                    onKeyEnter={onKeyEnter}
                    error={error}/>
-            <ButtonX callback={addTask} name={'Add'}/>
+            <ButtonX callback={addTask} name={'+'}/>
         </FormCase>
     );
 };

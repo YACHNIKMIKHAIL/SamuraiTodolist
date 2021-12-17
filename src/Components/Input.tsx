@@ -22,7 +22,7 @@ const Input = ({callback, title, onChangeInput, onKeyEnter, error, ...props}: In
                    value={title}
                    onChange={onChangeInputX}
                    onKeyPress={onKeyEnterX}/>
-            {error ? <div className={'error-message'}>Нету тайтла!</div> : ''}
+            {error ? <div className={'error-message'}>???</div> : ''}
         </>
     );
 };

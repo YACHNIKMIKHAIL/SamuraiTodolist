@@ -41,11 +41,12 @@ const TasksMap = ({tasks, removeTask, changeTaskTitle, todolistID, ...props}: Ta
 export default TasksMap;
 
 const TaskCase = styled.div`
-  
 `
 const LiCase = styled.li`
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  list-style: none;
 `
 const CheckboxCase = styled.li`
   
