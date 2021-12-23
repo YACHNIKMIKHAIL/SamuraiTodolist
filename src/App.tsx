@@ -1,10 +1,25 @@
-import React, {useState} from 'react';
+import React, {useReducer, useState} from 'react';
 import './App.css';
 import {FilterType, TaskType, TodolistType} from './Todolist';
 import styled from "styled-components";
 import {v1} from "uuid";
 import AddForm from "./Components/AddForm";
 import TodolistsMap from "./Components/TodolistsMap";
+import {
+    addNewTasksAC,
+    addTaskAC,
+    changeTaskStatusAC,
+    changeTaskTitleAC,
+    removeTaskAC,
+    TasksReducer
+} from "./Components/State/TasksReducer";
+import {
+    addTodoAC,
+    changeTodoFilterAC,
+    changeTodoTitleAC,
+    removeTodoAC,
+    TodolistsReducer
+} from "./Components/State/TodolistsReducer";
 
 
 export type TasksStateType = { [key: string]: Array<TaskType> }
@@ -16,13 +31,13 @@ function App() {
     const todolist4 = v1()
     const todolist5 = v1()
 
-    let initTodolists: TodolistType[] = [
-        {id: todolist1, title: "Что учить?", filter: 'all'},
-        {id: todolist2, title: "Что покупать?", filter: 'all'},
-        {id: todolist3, title: "Что посмотреть?", filter: 'all'},
-        {id: todolist4, title: "Что сходить?", filter: 'all'},
-        {id: todolist5, title: "Что пить?", filter: 'all'}
-    ]
+    // let initTodolists: Array<TodolistType> = [
+    //     {id: todolist1, title: "Что учить?", filter: 'all'},
+    //     {id: todolist2, title: "Что покупать?", filter: 'all'},
+    //     {id: todolist3, title: "Что посмотреть?", filter: 'all'},
+    //     {id: todolist4, title: "Что сходить?", filter: 'all'},
+    //     {id: todolist5, title: "Что пить?", filter: 'all'}
+    // ]
 
     let initTasks: TasksStateType = {
         [todolist1]: [{id: v1(), title: "HTML&CSS", isDone: false},
@@ -42,47 +57,77 @@ function App() {
             {id: v1(), title: "Чай", isDone: true}]
     }
 
-    let [tasks, setTasks] = useState<TasksStateType>(initTasks)
-    let [todolists, setTodolists] = useState<Array<TodolistType>>(initTodolists)
+    let [tasks, dispatchTasks] = useReducer(TasksReducer, initTasks)
+    let [todolists, dispatchTodolists] = useReducer(TodolistsReducer,  [
+        {id: todolist1, title: "Что учить?", filter: 'all'},
+        {id: todolist2, title: "Что покупать?", filter: 'all'},
+        {id: todolist3, title: "Что посмотреть?", filter: 'all'},
+        {id: todolist4, title: "Что сходить?", filter: 'all'},
+        {id: todolist5, title: "Что пить?", filter: 'all'}
+    ])
 
 
-    const removeTask = (id: string, todolistID: string) => setTasks({
-        ...tasks,
-        [todolistID]: tasks[todolistID].filter(f => f.id !== id)
-    })
+    const removeTask = (id: string, todolistID: string) =>dispatchTasks(removeTaskAC(id, todolistID))
+    // {
+    //     setTasks({
+    //         ...tasks,
+    //         [todolistID]: tasks[todolistID].filter(f => f.id !== id)
+    //     })
+    // }
 
-    const changeFilter = (filter: FilterType, todolistID: string) => setTodolists(todolists.map(m => m.id === todolistID ? {
-        ...m,
-        filter: filter
-    } : m))
+    const changeFilter = (filter: FilterType, todolistID: string) => dispatchTodolists(changeTodoFilterAC( todolistID,˚filter))
+    // {
+    //     setTodolists(todolists.map(m => m.id === todolistID ? {
+    //         ...m,
+    //         filter: filter
+    //     } : m))
+    // }
 
-    const addTask = (title: string, todolistID: string) => setTasks({
-        ...tasks,
-        [todolistID]: [{id: v1(), title: title, isDone: false}, ...tasks[todolistID]]
-    })
+    const addTask = (title: string, todolistID: string) => dispatchTasks(addTaskAC(title, todolistID))
+    // {
+    //     setTasks({
+    //         ...tasks,
+    //         [todolistID]: [{id: v1(), title: title, isDone: false}, ...tasks[todolistID]]
+    //     })
+    // }
 
-    const removeTodolist = (todolistID: string) => setTodolists(todolists.filter(f => f.id !== todolistID))
+    const removeTodolist = (todolistID: string) =>  dispatchTodolists(removeTodoAC(todolistID))
+
+        // setTodolists(todolists.filter(f => f.id !== todolistID))
 
     const addTodolist = (title: string) => {
-        const newID = v1()
-        setTodolists([{id: newID, title: title, filter: 'all'}, ...todolists])
-        setTasks({...tasks, [newID]: []})
+        const newId=v1()
+        dispatchTodolists(addTodoAC(newId,title))
+        dispatchTasks(addNewTasksAC(newId))
     }
-    const changeTaskTitle = (newTitle: string, todolistID: string, id: string) => setTasks({
-        ...tasks,
-        [todolistID]: tasks[todolistID].map(m => m.id === id ? {...m, title: newTitle} : m)
-    })
+    // {
+    //     const newID = v1()
+    //     setTodolists([{id: newID, title: title, filter: 'all'}, ...todolists])
+    //     setTasks({...tasks, [newID]: []})
+    // }
+    const changeTaskTitle = (newTitle: string, todolistID: string, id: string) => dispatchTasks(changeTaskTitleAC(newTitle, todolistID, id))
+    // {
+    //     setTasks({
+    //         ...tasks,
+    //         [todolistID]: tasks[todolistID].map(m => m.id === id ? {...m, title: newTitle} : m)
+    //     })
+    // }
 
-    const changeTodolistTitle = (newTitle: string, todolistID: string) => setTodolists([...todolists.map(m => m.id === todolistID ? {
-        ...m,
-        title: newTitle
-    } : m)])
+    const changeTodolistTitle = (newTitle: string, todolistID: string) => dispatchTodolists(changeTodoTitleAC(newTitle,todolistID))
+    // {
+    //     setTodolists([...todolists.map(m => m.id === todolistID ? {
+    //         ...m,
+    //         title: newTitle
+    //     } : m)])
+    // }
 
-    const changeCheckbox = (isDone: boolean, id: string, todolistID: string) => setTasks({
-        ...tasks,
-        [todolistID]: tasks[todolistID].map(m => m.id === id ? {...m, isDone} : m)
-    })
-
+    const changeCheckbox = (isDone: boolean, id: string, todolistID: string) => dispatchTasks(changeTaskStatusAC(isDone, id, todolistID))
+    // {
+    //     setTasks({
+    //         ...tasks,
+    //         [todolistID]: tasks[todolistID].map(m => m.id === id ? {...m, isDone} : m)
+    //     })
+    // }
 
     return (
         <div className={'background'}>
