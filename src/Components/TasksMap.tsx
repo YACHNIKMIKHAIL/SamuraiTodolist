@@ -28,7 +28,6 @@ const TasksMap = ({tasks, removeTask, changeTaskTitle, todolistID, ...props}: Ta
                     <EditableSpanCase>
                         <EditableSpan title={m.title} callback={(e) => changeTaskTitleX(e, m.id)}/>
                     </EditableSpanCase>
-                    {/*<button onClick={() => removeTaskX(m.id)}>x</button>*/}
                     <ButtonXCase>
                         <ButtonX callback={() => removeTaskX(m.id)} name={'x'}/>
                     </ButtonXCase>

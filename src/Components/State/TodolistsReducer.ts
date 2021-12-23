@@ -1,6 +1,8 @@
 import {FilterType, TodolistType} from "../../Todolist";
 
-export const TodolistsReducer = (state:any[] , action: ActionType) => {
+export type TodolistReducerType = (state: TodolistType[], action: ActionType) => TodolistType[]
+
+export const TodolistsReducer: TodolistReducerType = (state , action) => {
     switch (action.type) {
         case "CHANGE_FILTER": {
             return state.map(m=>m.id===action.payload.todoID?{...m,filter:action.payload.filter}:m)
@@ -22,7 +24,7 @@ export const TodolistsReducer = (state:any[] , action: ActionType) => {
 type ActionType = changeFilterACType|removeTodoACType|addTodoACType|changeTodoTitleACType
 
 type changeFilterACType = ReturnType<typeof changeTodoFilterAC>
-export const changeTodoFilterAC = (todoID:string,filter: FilterType ) => {
+export const changeTodoFilterAC = (filter: FilterType,todoID:string ) => {
     return {
         type: 'CHANGE_FILTER',
         payload: {

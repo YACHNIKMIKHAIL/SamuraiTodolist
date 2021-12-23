@@ -1,5 +1,4 @@
 import React, {ChangeEvent, useState} from 'react';
-import styled from "styled-components";
 
 type EditableSpanType = {
     title: string

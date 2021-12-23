@@ -17,7 +17,7 @@ test('change todo filter',()=>{
         {id: todolist5, title: "Что пить?", filter: 'all'}
     ]
 
-    const result=TodolistsReducer(initTodolists,changeTodoFilterAC(todolist2,'active'))
+    const result=TodolistsReducer(initTodolists,changeTodoFilterAC('active',todolist2))
 
     expect(result[1].filter).toBe('active')
     expect(result[0].filter).toBe('all')
@@ -76,7 +76,6 @@ test('change todo title',()=>{
     const todolist3 = v1()
     const todolist4 = v1()
     const todolist5 = v1()
-    const newID=v1()
 
     let initTodolists: TodolistType[] = [
         {id: todolist1, title: "Что учить?", filter: 'all'},

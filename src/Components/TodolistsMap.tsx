@@ -11,7 +11,7 @@ type TodolistsMapPropsType = {
     changeTaskTitle: (newTitle: string, todolistID: string, id: string) => void
     changeTodolistTitle: (newTitle: string, todolistID: string) => void
     todolists: Array<TodolistType>
-    changeCheckbox:(isDone:boolean,id:string,todolistID:string)=>void
+    changeCheckbox: (isDone: boolean, id: string, todolistID: string) => void
 }
 export const TodolistsMap = ({
                                  tasks,
