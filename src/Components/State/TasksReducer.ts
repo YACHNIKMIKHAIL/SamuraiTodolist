@@ -10,12 +10,15 @@ switch (action.type){
     case "ADD_TASK":{
         return {...state,[action.payload.todoID]:[{id: v1(), title: action.payload.title, isDone: false},...state[action.payload.todoID]]}
     }
+    case "CHANGE_TASK_TITLE":{
+        return {...state,[action.payload.todoID]: state[action.payload.todoID].map(m=>m.id===action.payload.taskID?{...m,title:action.payload.title}:m)}
+    }
     return state
 }
 
 };
 
-type ActionType = removeTaskACType|addTaskACType
+type ActionType = removeTaskACType|addTaskACType|changeTaskTitleACType
 
 type removeTaskACType = ReturnType<typeof removeTaskAC>
 export const removeTaskAC = (todoID:string, taskID: string) => {
@@ -35,6 +38,18 @@ export const addTaskAC = (title: string,todoID:string) => {
         payload: {
             todoID:todoID,
             title:title
+        }
+    } as const
+}
+
+type changeTaskTitleACType = ReturnType<typeof changeTaskTitleAC>
+export const changeTaskTitleAC = (title: string,todoID:string,taskID:string) => {
+    return {
+        type: 'CHANGE_TASK_TITLE',
+        payload: {
+            todoID:todoID,
+            title:title,
+            taskID:taskID
         }
     } as const
 }
