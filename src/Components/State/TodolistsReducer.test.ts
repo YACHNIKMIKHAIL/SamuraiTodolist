@@ -94,3 +94,4 @@ test('change todo title',()=>{
     expect(result[1].title).toBe('New title for todo')
     expect(result[0].title).toBe("Что учить?")
 })
+
