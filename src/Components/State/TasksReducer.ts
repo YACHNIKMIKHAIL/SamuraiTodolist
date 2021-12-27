@@ -1,8 +1,28 @@
 import {TasksStateType} from "../../App";
 import {v1} from "uuid";
+import {todolist1, todolist2, todolist3, todolist4, todolist5} from "./TodolistsReducer";
+
+const initialTasksState:TasksStateType={
+    [todolist1]: [{id: v1(), title: "HTML&CSS", isDone: false},
+        {id: v1(), title: "JS", isDone: false},
+        {id: v1(), title: "ReactJS", isDone: true}],
+    [todolist2]: [{id: v1(), title: "Молочко", isDone: false},
+        {id: v1(), title: "Кефирчик", isDone: true},
+        {id: v1(), title: "Хлеб", isDone: false}],
+    [todolist3]: [{id: v1(), title: "Мульты", isDone: false},
+        {id: v1(), title: "Видосик по нативке", isDone: true},
+        {id: v1(), title: "Просто закрыть глаза", isDone: false}],
+    [todolist4]: [{id: v1(), title: "Просто прогулка", isDone: false},
+        {id: v1(), title: "Игровая", isDone: false},
+        {id: v1(), title: "Гости", isDone: false},
+        {id: v1(), title: "Домооооой", isDone: true}],
+    [todolist5]: [{id: v1(), title: "Чай", isDone: true},
+        {id: v1(), title: "Чай", isDone: true}]
+}
+
 
 export type TasksReducerType = (state: TasksStateType, action: ActionType) => TasksStateType
-export const TasksReducer: TasksReducerType = (state, action) => {
+export const TasksReducer: TasksReducerType = (state=initialTasksState, action) => {
     switch (action.type) {
         case "REMOVE_TASK": {
             return {

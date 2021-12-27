@@ -1,20 +1,19 @@
 import React from 'react';
 import {FilterType, Todolist, TodolistType} from "../Todolist";
 import {TasksStateType} from "../App";
+import {useSelector} from "react-redux";
+import {rootReducerType} from "./State/store";
 
 type TodolistsMapPropsType = {
-    tasks: TasksStateType
     removeTask: (id: string, todolistID: string) => void
     changeFilter: (filter: FilterType, todolistID: string) => void
     addTask: (title: string, todolistID: string) => void
     removeTodolist: (todolistId: string) => void
     changeTaskTitle: (newTitle: string, todolistID: string, id: string) => void
     changeTodolistTitle: (newTitle: string, todolistID: string) => void
-    todolists: Array<TodolistType>
     changeCheckbox: (isDone: boolean, id: string, todolistID: string) => void
 }
 export const TodolistsMap = ({
-                                 tasks,
                                  removeTask,
                                  changeFilter,
                                  addTask,
@@ -23,9 +22,13 @@ export const TodolistsMap = ({
                                  changeTodolistTitle,
                                  ...props
                              }: TodolistsMapPropsType) => {
+
+    const tasks = useSelector<rootReducerType, TasksStateType>(state => state.tasks)
+    const todolists = useSelector<rootReducerType, Array<TodolistType>>(state => state.todolists)
+
     return (
         <>
-            {props.todolists.map(m => {
+            {todolists.map(m => {
                 let tasksForTodo = tasks[m.id]
                 if (m.filter === 'active') {
                     tasksForTodo = tasks[m.id].filter(f => !f.isDone)
