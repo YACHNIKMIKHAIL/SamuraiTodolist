@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
 import {FilterType, TaskType} from './Todolist';
-import styled from "styled-components";
 import {v1} from "uuid";
 import AddForm from "./Components/AddForm";
 import TodolistsMap from "./Components/TodolistsMap";
@@ -9,16 +8,14 @@ import {
     addNewTasksAC,
     addTaskAC,
     changeTaskStatusAC,
-    changeTaskTitleAC, deleteTasksAC,
+    changeTaskTitleAC,
+    deleteTasksAC,
     removeTaskAC
 } from "./Components/State/TasksReducer";
-import {
-    addTodoAC,
-    changeTodoFilterAC,
-    changeTodoTitleAC,
-    removeTodoAC
-} from "./Components/State/TodolistsReducer";
+import {addTodoAC, changeTodoFilterAC, changeTodoTitleAC, removeTodoAC} from "./Components/State/TodolistsReducer";
 import {useDispatch} from "react-redux";
+import styled from "styled-components";
+import SearchAppBar from "./Components/AppBar";
 
 
 export type TasksStateType = { [key: string]: Array<TaskType> }
@@ -66,15 +63,17 @@ function App() {
                         changeCheckbox={changeCheckbox}
                     />
                 </BobyCase>
-                <FormCase>What to do:
+                <FormCase>
                     <AddForm callback={addTodolist} title={'+'}/>
                 </FormCase>
+                <SearchAppBar/>
             </AppCase>
         </div>
     );
 }
 
 export default App;
+
 
 const AppCase = styled.div`
   height: 100vh;

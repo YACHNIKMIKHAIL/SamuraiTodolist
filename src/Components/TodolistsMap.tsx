@@ -13,7 +13,7 @@ type TodolistsMapPropsType = {
     changeTodolistTitle: (newTitle: string, todolistID: string) => void
     changeCheckbox: (isDone: boolean, id: string, todolistID: string) => void
 }
-export const TodolistsMap = ({
+export const TodolistsMap:React.FC<TodolistsMapPropsType>= ({
                                  removeTask,
                                  changeFilter,
                                  addTask,
@@ -21,7 +21,7 @@ export const TodolistsMap = ({
                                  changeTaskTitle,
                                  changeTodolistTitle,
                                  ...props
-                             }: TodolistsMapPropsType) => {
+                             }) => {
 
     const tasks = useSelector<rootReducerType, TasksStateType>(state => state.tasks)
     const todolists = useSelector<rootReducerType, Array<TodolistType>>(state => state.todolists)
