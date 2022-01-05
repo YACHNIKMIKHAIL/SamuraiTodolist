@@ -8,7 +8,7 @@ type InputPropsType = {
     onKeyEnter: (e: React.KeyboardEvent<HTMLInputElement>) => void
     error: boolean
 }
-const Input = ({callback, title, onChangeInput, onKeyEnter, error, ...props}: InputPropsType) => {
+export const InputMemo = ({callback, title, onChangeInput, onKeyEnter, error, ...props}: InputPropsType) => {
     const onChangeInputX = (e: ChangeEvent<HTMLInputElement>) => {
         onChangeInput(e)
     }
@@ -19,16 +19,16 @@ const Input = ({callback, title, onChangeInput, onKeyEnter, error, ...props}: In
     return (
         <>
             <InputCase className={error ? 'error' : ''}
-                   value={error?'введи тайтл!!!':title}
-                   onChange={onChangeInputX}
-                   onKeyPress={onKeyEnterX}/>
+                       value={error ? 'введи тайтл!!!' : title}
+                       onChange={onChangeInputX}
+                       onKeyPress={onKeyEnterX}/>
         </>
     );
 };
 
-export default Input;
+export const Input = React.memo(InputMemo);
 
-const InputCase=styled("input")`
+const InputCase = styled("input")`
   background-color: rgba(231, 221, 201, 0.6);
   border: 1px solid rgba(99, 110, 101, 0.8);
   border-radius: 5px;

@@ -1,11 +1,11 @@
 import React from 'react';
-import {FilterType, Todolist, TodolistType} from "../Todolist";
+import {Todolist, TodolistType} from "../Todolist";
 import {TasksStateType} from "../App";
 import {useSelector} from "react-redux";
 import {rootReducerType} from "./State/store";
 
 type TodolistsMapPropsType = {}
-export const TodolistsMap: React.FC<TodolistsMapPropsType> = (props: TodolistsMapPropsType) => {
+export const TodolistsMapMemo: React.FC<TodolistsMapPropsType> = (props: TodolistsMapPropsType) => {
 
     const tasks = useSelector<rootReducerType, TasksStateType>(state => state.tasks)
     const todolists = useSelector<rootReducerType, Array<TodolistType>>(state => state.todolists)
@@ -34,4 +34,4 @@ export const TodolistsMap: React.FC<TodolistsMapPropsType> = (props: TodolistsMa
     );
 };
 
-export default TodolistsMap;
+export const TodolistsMap = React.memo(TodolistsMapMemo);

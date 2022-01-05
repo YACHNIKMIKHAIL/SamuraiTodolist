@@ -1,13 +1,13 @@
 import React, {ChangeEvent, useState} from 'react';
-import Input from "./Input";
 import ButtonX from "./Button";
 import styled from "styled-components";
+import {Input} from "./Input";
 
 type AddFormType = {
     callback: (title: string) => void
     title: string
 }
-const AddForm = ({callback, ...props}: AddFormType) => {
+export const AddFormMemo = ({callback, ...props}: AddFormType) => {
 
     const [title, setTitle] = useState<string>('')
     const [error, setError] = useState<boolean>(false)
@@ -39,11 +39,11 @@ const AddForm = ({callback, ...props}: AddFormType) => {
     );
 };
 
-export default AddForm;
+export const AddForm = React.memo(AddFormMemo);
 
 const FormCase = styled.div`
   width: 70%;
-  height:65% ;
+  height: 65%;
   display: flex;
   justify-content: center;
   align-items: center;

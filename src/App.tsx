@@ -1,21 +1,13 @@
 import React from 'react';
 import './App.css';
-import {FilterType, TaskType} from './Todolist';
+import {TaskType} from './Todolist';
 import {v1} from "uuid";
-import AddForm from "./Components/AddForm";
-import TodolistsMap from "./Components/TodolistsMap";
-import {
-    addNewTasksAC,
-    addTaskAC,
-    changeTaskStatusAC,
-    changeTaskTitleAC,
-    deleteTasksAC,
-    removeTaskAC
-} from "./Components/State/TasksReducer";
-import {addTodoAC, changeTodoFilterAC, changeTodoTitleAC, removeTodoAC} from "./Components/State/TodolistsReducer";
+import {addTodoAC} from "./Components/State/TodolistsReducer";
 import {useDispatch} from "react-redux";
 import styled from "styled-components";
 import SearchAppBar from "./Components/AppBar";
+import {TodolistsMap} from "./Components/TodolistsMap";
+import {AddForm} from "./Components/AddForm";
 
 
 export type TasksStateType = { [key: string]: Array<TaskType> }

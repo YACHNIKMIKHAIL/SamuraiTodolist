@@ -7,7 +7,7 @@ type ButtonPropsType = {
     name: string
     className?: string
 }
-const ButtonX = ({callback, name, ...props}: ButtonPropsType) => {
+export const ButtonX = ({callback, name, ...props}: ButtonPropsType) => {
     const onClick = () => callback()
     return (
         <div>

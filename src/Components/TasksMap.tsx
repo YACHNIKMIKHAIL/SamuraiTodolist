@@ -1,9 +1,9 @@
 import React, {ChangeEvent} from 'react';
-import EditableSpan from "./EditableSpan";
 import {TaskType} from "../Todolist";
-import Checkbox from "./Checkbox";
 import ButtonX from "./Button";
 import styled from "styled-components";
+import {Checkbox} from "./Checkbox";
+import {EditableSpan} from "./EditableSpan";
 
 
 type TasksMapPropsType = {
@@ -13,7 +13,7 @@ type TasksMapPropsType = {
     todolistID: string
     changeCheckbox: (isDone: boolean, id: string, todolistID: string) => void
 }
-const TasksMap = ({tasks, removeTask, changeTaskTitle, todolistID, ...props}: TasksMapPropsType) => {
+export const TasksMapMemo = ({tasks, removeTask, changeTaskTitle, todolistID, ...props}: TasksMapPropsType) => {
     const changeTaskTitleX = (newTitle: string, id: string) => changeTaskTitle(newTitle, todolistID, id)
     const removeTaskX = (id: string) => removeTask(id, todolistID)
     const ChangeCheckboxX = (e: ChangeEvent<HTMLInputElement>, id: string) => props.changeCheckbox(e.currentTarget.checked, id, todolistID)
@@ -37,7 +37,7 @@ const TasksMap = ({tasks, removeTask, changeTaskTitle, todolistID, ...props}: Ta
     );
 };
 
-export default TasksMap;
+export const TasksMap = React.memo(TasksMapMemo);
 
 const TaskCase = styled.div`
 `
@@ -48,7 +48,7 @@ const LiCase = styled.div`
   list-style: none;
 `
 const CheckboxCase = styled.li`
-  
+
 `
 const EditableSpanCase = styled.li`
   color: #121819;

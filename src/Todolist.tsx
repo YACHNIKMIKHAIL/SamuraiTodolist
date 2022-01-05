@@ -1,14 +1,13 @@
 import React from 'react';
-import AddForm from "./Components/AddForm";
-import EditableSpan from "./Components/EditableSpan";
-import TasksMap from "./Components/TasksMap";
 import styled from "styled-components";
 import Button from "./Components/Button";
 import ButtonX from "./Components/Button";
 import {addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC} from "./Components/State/TasksReducer";
-import {addTodoAC, changeTodoFilterAC, changeTodoTitleAC, removeTodoAC} from "./Components/State/TodolistsReducer";
-import {v1} from "uuid";
+import {changeTodoFilterAC, changeTodoTitleAC, removeTodoAC} from "./Components/State/TodolistsReducer";
 import {useDispatch} from "react-redux";
+import {AddForm} from "./Components/AddForm";
+import {EditableSpan} from "./Components/EditableSpan";
+import {TasksMap} from "./Components/TasksMap";
 
 export type FilterType = 'all' | 'complited' | 'active'
 export type TodolistType = {
@@ -29,12 +28,12 @@ type TodolistPropsType = {
     filter: string
 }
 
-export function Todolist({
-                             todolistID,
-                             title,
-                             tasks,
-                             filter
-                         }: TodolistPropsType) {
+export const TodolistMemo = ({
+                                 todolistID,
+                                 title,
+                                 tasks,
+                                 filter
+                             }: TodolistPropsType) => {
     const dispatch = useDispatch()
     const removeTask = (id: string, todolistID: string) => dispatch(removeTaskAC(id, todolistID))
     const changeFilter = (filter: FilterType, todolistID: string) => dispatch(changeTodoFilterAC(filter, todolistID))
@@ -42,7 +41,7 @@ export function Todolist({
     const changeTaskTitle = (newTitle: string, todolistID: string, id: string) => dispatch(changeTaskTitleAC(newTitle, todolistID, id))
     const changeTodolistTitle = (newTitle: string) => dispatch(changeTodoTitleAC(newTitle, todolistID))
     const removeTodolist = () => dispatch(removeTodoAC(todolistID))
-    const changeCheckbox = (isDone: boolean,id:string) => dispatch(changeTaskStatusAC(isDone, id, todolistID))
+    const changeCheckbox = (isDone: boolean, id: string) => dispatch(changeTaskStatusAC(isDone, id, todolistID))
 
     return <TodolistCase>
 
@@ -64,15 +63,17 @@ export function Todolist({
         </TasksMapCase>
 
         <ButtonCase>
-            <ButtonX callback={() => changeFilter('all',todolistID)} name={'All'}
+            <ButtonX callback={() => changeFilter('all', todolistID)} name={'All'}
                      className={filter === 'all' ? 'active-filter' : ''}/>
-            <ButtonX callback={() => changeFilter('active',todolistID)} name={'Active'}
+            <ButtonX callback={() => changeFilter('active', todolistID)} name={'Active'}
                      className={filter === 'active' ? 'active-filter' : ''}/>
-            <ButtonX callback={() => changeFilter('complited',todolistID)} name={'Complited'}
+            <ButtonX callback={() => changeFilter('complited', todolistID)} name={'Complited'}
                      className={filter === 'complited' ? 'active-filter' : ''}/>
         </ButtonCase>
     </TodolistCase>
 }
+
+export const Todolist = React.memo(TodolistMemo)
 
 const TodolistCase = styled.div`
   display: flex;
