@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent, useCallback, useState} from 'react';
 import ButtonX from "./Button";
 import styled from "styled-components";
 import {Input} from "./Input";
@@ -12,7 +12,7 @@ export const AddFormMemo = ({callback, ...props}: AddFormType) => {
     const [title, setTitle] = useState<string>('')
     const [error, setError] = useState<boolean>(false)
 
-    const addTask = () => {
+    const addTask = useCallback(() => {
         if (title.trim() !== '') {
             callback(title.trim())
             setTitle('')
@@ -20,11 +20,11 @@ export const AddFormMemo = ({callback, ...props}: AddFormType) => {
         } else {
             setError(true)
         }
-    }
-    const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
+    }, [title, error])
+    const onChangeInput = useCallback((e: ChangeEvent<HTMLInputElement>) => {
         setTitle(e.currentTarget.value)
         setError(false)
-    }
+    },[title, error])
     const onKeyEnter = (e: React.KeyboardEvent<HTMLInputElement>) => e.key === 'Enter' ? addTask() : ''
 
     return (

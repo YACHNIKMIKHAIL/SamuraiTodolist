@@ -4,7 +4,9 @@ import {TasksStateType} from "../App";
 import {useSelector} from "react-redux";
 import {rootReducerType} from "./State/store";
 
-type TodolistsMapPropsType = {}
+type TodolistsMapPropsType = {
+
+}
 export const TodolistsMapMemo: React.FC<TodolistsMapPropsType> = (props: TodolistsMapPropsType) => {
 
     const tasks = useSelector<rootReducerType, TasksStateType>(state => state.tasks)

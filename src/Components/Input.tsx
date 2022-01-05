@@ -1,4 +1,4 @@
-import React, {ChangeEvent} from 'react';
+import React, {ChangeEvent, useCallback} from 'react';
 import styled from "styled-components";
 
 type InputPropsType = {
@@ -9,9 +9,9 @@ type InputPropsType = {
     error: boolean
 }
 export const InputMemo = ({callback, title, onChangeInput, onKeyEnter, error, ...props}: InputPropsType) => {
-    const onChangeInputX = (e: ChangeEvent<HTMLInputElement>) => {
+    const onChangeInputX = useCallback((e: ChangeEvent<HTMLInputElement>) => {
         onChangeInput(e)
-    }
+    },[title])
     const onKeyEnterX = (e: React.KeyboardEvent<HTMLInputElement>) => {
         onKeyEnter(e)
     }

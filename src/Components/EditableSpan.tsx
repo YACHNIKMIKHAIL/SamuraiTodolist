@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent, useCallback, useState} from 'react';
 
 type EditableSpanType = {
     title: string
@@ -8,14 +8,14 @@ export const EditableSpanMemo = (props: EditableSpanType) => {
     const [edit, setEdit] = useState<boolean>(false)
     const [title, setTitle] = useState<string>('')
 
-    const activateEdit = () => {
+    const activateEdit = useCallback(() => {
         setEdit(true)
         setTitle(props.title)
-    }
-    const desActivateEdit = () => {
+    }, [edit, title])
+    const desActivateEdit = useCallback(() => {
         setEdit(false)
         props.callback(title)
-    }
+    }, [edit, title])
     const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => setTitle(e.currentTarget.value)
 
     return (

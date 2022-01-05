@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import styled from "styled-components";
 import Button from "./Components/Button";
 import ButtonX from "./Components/Button";
@@ -35,13 +35,27 @@ export const TodolistMemo = ({
                                  filter
                              }: TodolistPropsType) => {
     const dispatch = useDispatch()
-    const removeTask = (id: string, todolistID: string) => dispatch(removeTaskAC(id, todolistID))
-    const changeFilter = (filter: FilterType, todolistID: string) => dispatch(changeTodoFilterAC(filter, todolistID))
-    const addTask = (title: string) => dispatch(addTaskAC(title, todolistID))
-    const changeTaskTitle = (newTitle: string, todolistID: string, id: string) => dispatch(changeTaskTitleAC(newTitle, todolistID, id))
-    const changeTodolistTitle = (newTitle: string) => dispatch(changeTodoTitleAC(newTitle, todolistID))
-    const removeTodolist = () => dispatch(removeTodoAC(todolistID))
-    const changeCheckbox = (isDone: boolean, id: string) => dispatch(changeTaskStatusAC(isDone, id, todolistID))
+    const removeTask = useCallback((id: string, todolistID: string) => {
+        dispatch(removeTaskAC(id, todolistID))
+    }, [dispatch, todolistID])
+    const changeFilter = useCallback((filter: FilterType, todolistID: string) => {
+        dispatch(changeTodoFilterAC(filter, todolistID))
+    }, [dispatch, filter, todolistID])
+    const addTask = useCallback((title: string) => {
+        dispatch(addTaskAC(title, todolistID))
+    }, [dispatch, title, todolistID])
+    const changeTaskTitle = useCallback((newTitle: string, todolistID: string, id: string) => {
+        dispatch(changeTaskTitleAC(newTitle, todolistID, id))
+    }, [dispatch, todolistID])
+    const changeTodolistTitle = useCallback((newTitle: string) => {
+        dispatch(changeTodoTitleAC(newTitle, todolistID))
+    }, [dispatch, todolistID])
+    const removeTodolist = useCallback(() => {
+        dispatch(removeTodoAC(todolistID))
+    }, [dispatch, todolistID])
+    const changeCheckbox = useCallback((isDone: boolean, id: string) => {
+        dispatch(changeTaskStatusAC(isDone, id, todolistID))
+    }, [dispatch, todolistID])
 
     return <TodolistCase>
 

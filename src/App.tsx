@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import './App.css';
 import {TaskType} from './Todolist';
 import {v1} from "uuid";
@@ -14,10 +14,10 @@ export type TasksStateType = { [key: string]: Array<TaskType> }
 
 function App() {
     const dispatch=useDispatch()
-    const addTodolist = (title: string) => {
+    const addTodolist = useCallback((title: string) => {
         const newId = v1()
         dispatch(addTodoAC(newId, title))
-    }
+    },[dispatch])
 
     return (
         <div className={'background'}>
