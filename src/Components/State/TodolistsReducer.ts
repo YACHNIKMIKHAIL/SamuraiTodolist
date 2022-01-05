@@ -13,7 +13,7 @@ export const initialTodolistState: TodolistType[] = [
     {id: todolist2, title: "Что покупать?", filter: 'all'},
     {id: todolist3, title: "Что посмотреть?", filter: 'all'},
     {id: todolist4, title: "Что сходить?", filter: 'all'},
-    {id: todolist5, title: "Что пить?", filter: 'all'}
+    // {id: todolist5, title: "Что пить?", filter: 'all'}
 ]
 
 export const TodolistsReducer = (state = initialTodolistState, action: ActionType): TodolistType[] => {
@@ -21,7 +21,7 @@ export const TodolistsReducer = (state = initialTodolistState, action: ActionTyp
         case "CHANGE_FILTER": {
             return state.map(m => m.id === action.payload.todoID ? {...m, filter: action.payload.filter} : m)
         }
-        case "REMOVE_TODO": {
+        case removeTT: {
             return state.filter(f => f.id !== action.payload.todoID)
         }
         case "ADD_TODO": {
@@ -48,10 +48,11 @@ export const changeTodoFilterAC = (filter: FilterType, todoID: string) => {
     } as const
 }
 
+export const removeTT='REMOVE_TODO_&_TASKS'
 type removeTodoACType = ReturnType<typeof removeTodoAC>
 export const removeTodoAC = (todoID: string) =>
    ({
-        type: 'REMOVE_TODO',
+        type: removeTT,
         payload: {
             todoID: todoID
         }

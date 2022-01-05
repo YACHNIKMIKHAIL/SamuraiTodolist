@@ -31,7 +31,7 @@ function App() {
     const addTask = (title: string, todolistID: string) => dispatch(addTaskAC(title, todolistID))
 
     const removeTodolist = (todolistID: string) => {
-        dispatch(deleteTasksAC(todolistID))
+        // dispatch(deleteTasksAC(todolistID))
         dispatch(removeTodoAC(todolistID))
     }
 

@@ -46,6 +46,7 @@ export function Todolist({
                              ...props
                          }: TodolistPropsType) {
 
+
     const changeFilterX = (filter: FilterType) => changeFilter(filter, todolistID)
     const removeTodolistX = () => removeTodolist(todolistID)
     const addTaskX = (title: string) => addTask(title, todolistID)

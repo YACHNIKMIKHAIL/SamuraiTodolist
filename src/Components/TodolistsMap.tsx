@@ -26,6 +26,9 @@ export const TodolistsMap:React.FC<TodolistsMapPropsType>= ({
     const tasks = useSelector<rootReducerType, TasksStateType>(state => state.tasks)
     const todolists = useSelector<rootReducerType, Array<TodolistType>>(state => state.todolists)
 
+    console.log(tasks)
+    console.log(todolists)
+
     return (
         <>
             {todolists.map(m => {

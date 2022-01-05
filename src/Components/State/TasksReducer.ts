@@ -1,6 +1,6 @@
 import {TasksStateType} from "../../App";
 import {v1} from "uuid";
-import {todolist1, todolist2, todolist3, todolist4, todolist5} from "./TodolistsReducer";
+import {removeTT, todolist1, todolist2, todolist3, todolist4, todolist5} from "./TodolistsReducer";
 
 const initialTasksState: TasksStateType = {
     [todolist1]: [{id: v1(), title: "HTML&CSS", isDone: false},
@@ -16,8 +16,8 @@ const initialTasksState: TasksStateType = {
         {id: v1(), title: "Игровая", isDone: false},
         {id: v1(), title: "Гости", isDone: false},
         {id: v1(), title: "Домооооой", isDone: true}],
-    [todolist5]: [{id: v1(), title: "Чай", isDone: true},
-        {id: v1(), title: "Чай", isDone: true}]
+    // [todolist5]: [{id: v1(), title: "Чай", isDone: true},
+    //     {id: v1(), title: "Чай", isDone: true}]
 }
 
 
@@ -62,7 +62,7 @@ export const TasksReducer = (state = initialTasksState, action: ActionType): Tas
                 ...state, [action.payload.todoID]: []
             }
         }
-        case "DELETE_TASKS": {
+        case removeTT: {
             let copy = {...state}
             delete copy[action.payload.todoID]
             return copy
@@ -139,7 +139,7 @@ export const addNewTasksAC = (todoID: string) => {
 type deleteTasksACType = ReturnType<typeof deleteTasksAC>
 export const deleteTasksAC = (todoID: string) => {
     return {
-        type: 'DELETE_TASKS',
+        type: removeTT,
         payload: {
             todoID: todoID
         }
