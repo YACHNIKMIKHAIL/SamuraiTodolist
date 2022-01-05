@@ -1,6 +1,6 @@
 import {TasksStateType} from "../../App";
 import {v1} from "uuid";
-import {removeTT, todolist1, todolist2, todolist3, todolist4, todolist5} from "./TodolistsReducer";
+import {addNewTT, removeTT, todolist1, todolist2, todolist3, todolist4, todolist5} from "./TodolistsReducer";
 
 const initialTasksState: TasksStateType = {
     [todolist1]: [{id: v1(), title: "HTML&CSS", isDone: false},
@@ -57,7 +57,7 @@ export const TasksReducer = (state = initialTasksState, action: ActionType): Tas
                 } : m)
             }
         }
-        case "ADD_NEW_TASKS": {
+        case addNewTT: {
             return {
                 ...state, [action.payload.todoID]: []
             }
@@ -129,7 +129,7 @@ export const changeTaskStatusAC = (isDone: boolean, taskID: string, todoID: stri
 type addNewTasksACType = ReturnType<typeof addNewTasksAC>
 export const addNewTasksAC = (todoID: string) => {
     return {
-        type: 'ADD_NEW_TASKS',
+        type: addNewTT,
         payload: {
             todoID: todoID
         }

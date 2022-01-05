@@ -5,6 +5,10 @@ import TasksMap from "./Components/TasksMap";
 import styled from "styled-components";
 import Button from "./Components/Button";
 import ButtonX from "./Components/Button";
+import {addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC} from "./Components/State/TasksReducer";
+import {addTodoAC, changeTodoFilterAC, changeTodoTitleAC, removeTodoAC} from "./Components/State/TodolistsReducer";
+import {v1} from "uuid";
+import {useDispatch} from "react-redux";
 
 export type FilterType = 'all' | 'complited' | 'active'
 export type TodolistType = {
@@ -22,45 +26,33 @@ type TodolistPropsType = {
     todolistID: string
     title: string
     tasks: Array<TaskType>
-    removeTask: (id: string, todolistID: string) => void
-    changeFilter: (filter: FilterType, todolistID: string) => void
-    addTask: (title: string, todolistID: string) => void
     filter: string
-    removeTodolist: (todolistId: string) => void
-    changeTaskTitle: (newTitle: string, todolistID: string, id: string) => void
-    changeTodolistTitle: (newTitle: string, todolistID: string) => void
-    changeCheckbox: (isDone: boolean, id: string, todolistID: string) => void
 }
 
 export function Todolist({
                              todolistID,
                              title,
                              tasks,
-                             removeTask,
-                             changeFilter,
-                             addTask,
-                             filter,
-                             removeTodolist,
-                             changeTaskTitle,
-                             changeTodolistTitle,
-                             ...props
+                             filter
                          }: TodolistPropsType) {
-
-
-    const changeFilterX = (filter: FilterType) => changeFilter(filter, todolistID)
-    const removeTodolistX = () => removeTodolist(todolistID)
-    const addTaskX = (title: string) => addTask(title, todolistID)
-    const changeTodolistTitleX = (newTitle: string) => changeTodolistTitle(newTitle, todolistID)
+    const dispatch = useDispatch()
+    const removeTask = (id: string, todolistID: string) => dispatch(removeTaskAC(id, todolistID))
+    const changeFilter = (filter: FilterType, todolistID: string) => dispatch(changeTodoFilterAC(filter, todolistID))
+    const addTask = (title: string) => dispatch(addTaskAC(title, todolistID))
+    const changeTaskTitle = (newTitle: string, todolistID: string, id: string) => dispatch(changeTaskTitleAC(newTitle, todolistID, id))
+    const changeTodolistTitle = (newTitle: string) => dispatch(changeTodoTitleAC(newTitle, todolistID))
+    const removeTodolist = () => dispatch(removeTodoAC(todolistID))
+    const changeCheckbox = (isDone: boolean,id:string) => dispatch(changeTaskStatusAC(isDone, id, todolistID))
 
     return <TodolistCase>
 
         <TitleCase>
-            <EditableSpan title={title} callback={changeTodolistTitleX}/>
-            <Button callback={removeTodolistX} name={'x'}/>
+            <EditableSpan title={title} callback={changeTodolistTitle}/>
+            <Button callback={removeTodolist} name={'x'}/>
         </TitleCase>
 
         <AddFormCase>
-            <AddForm callback={addTaskX} title={title}/>
+            <AddForm callback={addTask} title={title}/>
         </AddFormCase>
 
         <TasksMapCase>
@@ -68,16 +60,16 @@ export function Todolist({
                       removeTask={removeTask}
                       changeTaskTitle={changeTaskTitle}
                       todolistID={todolistID}
-                      changeCheckbox={props.changeCheckbox}/>
+                      changeCheckbox={changeCheckbox}/>
         </TasksMapCase>
 
         <ButtonCase>
-            <ButtonX callback={() => changeFilterX('all')} name={'All'}
-                    className={filter === 'all' ? 'active-filter' : ''}/>
-            <ButtonX callback={() => changeFilterX('active')} name={'Active'}
-                    className={filter === 'active' ? 'active-filter' : ''}/>
-            <ButtonX callback={() => changeFilterX('complited')} name={'Complited'}
-                    className={filter === 'complited' ? 'active-filter' : ''}/>
+            <ButtonX callback={() => changeFilter('all',todolistID)} name={'All'}
+                     className={filter === 'all' ? 'active-filter' : ''}/>
+            <ButtonX callback={() => changeFilter('active',todolistID)} name={'Active'}
+                     className={filter === 'active' ? 'active-filter' : ''}/>
+            <ButtonX callback={() => changeFilter('complited',todolistID)} name={'Complited'}
+                     className={filter === 'complited' ? 'active-filter' : ''}/>
         </ButtonCase>
     </TodolistCase>
 }

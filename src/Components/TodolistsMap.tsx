@@ -4,30 +4,12 @@ import {TasksStateType} from "../App";
 import {useSelector} from "react-redux";
 import {rootReducerType} from "./State/store";
 
-type TodolistsMapPropsType = {
-    removeTask: (id: string, todolistID: string) => void
-    changeFilter: (filter: FilterType, todolistID: string) => void
-    addTask: (title: string, todolistID: string) => void
-    removeTodolist: (todolistId: string) => void
-    changeTaskTitle: (newTitle: string, todolistID: string, id: string) => void
-    changeTodolistTitle: (newTitle: string, todolistID: string) => void
-    changeCheckbox: (isDone: boolean, id: string, todolistID: string) => void
-}
-export const TodolistsMap:React.FC<TodolistsMapPropsType>= ({
-                                 removeTask,
-                                 changeFilter,
-                                 addTask,
-                                 removeTodolist,
-                                 changeTaskTitle,
-                                 changeTodolistTitle,
-                                 ...props
-                             }) => {
+type TodolistsMapPropsType = {}
+export const TodolistsMap: React.FC<TodolistsMapPropsType> = (props: TodolistsMapPropsType) => {
 
     const tasks = useSelector<rootReducerType, TasksStateType>(state => state.tasks)
     const todolists = useSelector<rootReducerType, Array<TodolistType>>(state => state.todolists)
 
-    console.log(tasks)
-    console.log(todolists)
 
     return (
         <>
@@ -45,14 +27,7 @@ export const TodolistsMap:React.FC<TodolistsMapPropsType>= ({
                     todolistID={m.id}
                     title={m.title}
                     tasks={tasksForTodo}
-                    removeTask={removeTask}
-                    changeFilter={changeFilter}
-                    addTask={addTask}
-                    filter={m.filter}
-                    removeTodolist={removeTodolist}
-                    changeTaskTitle={changeTaskTitle}
-                    changeTodolistTitle={changeTodolistTitle}
-                    changeCheckbox={props.changeCheckbox}/>
+                    filter={m.filter}/>
             })
             }
         </>

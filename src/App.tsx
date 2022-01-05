@@ -21,47 +21,17 @@ import SearchAppBar from "./Components/AppBar";
 export type TasksStateType = { [key: string]: Array<TaskType> }
 
 function App() {
-
-    const dispatch = useDispatch()
-
-    const removeTask = (id: string, todolistID: string) => dispatch(removeTaskAC(id, todolistID))
-
-    const changeFilter = (filter: FilterType, todolistID: string) => dispatch(changeTodoFilterAC(filter, todolistID))
-
-    const addTask = (title: string, todolistID: string) => dispatch(addTaskAC(title, todolistID))
-
-    const removeTodolist = (todolistID: string) => {
-        // dispatch(deleteTasksAC(todolistID))
-        dispatch(removeTodoAC(todolistID))
-    }
-
+    const dispatch=useDispatch()
     const addTodolist = (title: string) => {
         const newId = v1()
         dispatch(addTodoAC(newId, title))
-        dispatch(addNewTasksAC(newId))
     }
-
-    const changeTaskTitle = (newTitle: string, todolistID: string, id: string) => dispatch(changeTaskTitleAC(newTitle, todolistID, id))
-
-
-    const changeTodolistTitle = (newTitle: string, todolistID: string) => dispatch(changeTodoTitleAC(newTitle, todolistID))
-
-
-    const changeCheckbox = (isDone: boolean, id: string, todolistID: string) => dispatch(changeTaskStatusAC(isDone, id, todolistID))
 
     return (
         <div className={'background'}>
             <AppCase>
                 <BobyCase>
-                    <TodolistsMap
-                        changeTodolistTitle={changeTodolistTitle}
-                        changeTaskTitle={changeTaskTitle}
-                        addTask={addTask}
-                        changeFilter={changeFilter}
-                        removeTask={removeTask}
-                        removeTodolist={removeTodolist}
-                        changeCheckbox={changeCheckbox}
-                    />
+                    <TodolistsMap/>
                 </BobyCase>
                 <FormCase>
                     <AddForm callback={addTodolist} title={'+'}/>

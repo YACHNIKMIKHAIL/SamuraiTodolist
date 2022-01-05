@@ -41,7 +41,7 @@ export default TasksMap;
 
 const TaskCase = styled.div`
 `
-const LiCase = styled.li`
+const LiCase = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
