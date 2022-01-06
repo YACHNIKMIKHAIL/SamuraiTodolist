@@ -1,13 +1,13 @@
 import IconButton from "@mui/material/IconButton";
-import {Fingerprint} from "@mui/icons-material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import {Button} from "@mui/material";
 import React from "react";
+import SmartToyIcon from '@mui/icons-material/SmartToy';
 
 export const buttonRender = (name:string,className:string|undefined,onClick:()=>void) => {
     if (name === '+') {
-        return <IconButton aria-label="fingerprint" color="secondary" onClick={onClick}>
-            <Fingerprint style={{color:"#19201F"}}/>
+        return <IconButton aria-label="fingerprint" color="secondary" onClick={onClick} size={'large'}>
+            <SmartToyIcon style={{color:"#19201F"}} />
         </IconButton>
     }
     if (name === 'x') {

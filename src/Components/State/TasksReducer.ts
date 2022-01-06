@@ -16,8 +16,8 @@ const initialTasksState: TasksStateType = {
         {id: v1(), title: "Игровая", isDone: false},
         {id: v1(), title: "Гости", isDone: false},
         {id: v1(), title: "Домооооой", isDone: true}],
-    // [todolist5]: [{id: v1(), title: "Чай", isDone: true},
-    //     {id: v1(), title: "Чай", isDone: true}]
+    [todolist5]: [{id: v1(), title: "Чай", isDone: true},
+        {id: v1(), title: "Чай", isDone: true}]
 }
 
 
@@ -81,9 +81,10 @@ type ActionType =
     | deleteTasksACType
 
 type removeTaskACType = ReturnType<typeof removeTaskAC>
+const REMOVE_TASK = 'REMOVE_TASK'
 export const removeTaskAC = (taskID: string, todoID: string) => {
     return {
-        type: 'REMOVE_TASK',
+        type: REMOVE_TASK,
         payload: {
             todoID: todoID,
             taskID: taskID
@@ -92,9 +93,10 @@ export const removeTaskAC = (taskID: string, todoID: string) => {
 }
 
 type addTaskACType = ReturnType<typeof addTaskAC>
+const ADD_TASK = 'ADD_TASK'
 export const addTaskAC = (title: string, todoID: string) => {
     return {
-        type: 'ADD_TASK',
+        type: ADD_TASK,
         payload: {
             todoID: todoID,
             title: title
@@ -103,9 +105,10 @@ export const addTaskAC = (title: string, todoID: string) => {
 }
 
 type changeTaskTitleACType = ReturnType<typeof changeTaskTitleAC>
+const CHANGE_TASK_TITLE = 'CHANGE_TASK_TITLE'
 export const changeTaskTitleAC = (title: string, todoID: string, taskID: string) => {
     return {
-        type: 'CHANGE_TASK_TITLE',
+        type: CHANGE_TASK_TITLE,
         payload: {
             todoID: todoID,
             title: title,
@@ -115,9 +118,10 @@ export const changeTaskTitleAC = (title: string, todoID: string, taskID: string)
 }
 
 type changeTaskStatusACType = ReturnType<typeof changeTaskStatusAC>
+const CHANGE_TASK_STATUS = 'CHANGE_TASK_STATUS'
 export const changeTaskStatusAC = (isDone: boolean, taskID: string, todoID: string) => {
     return {
-        type: 'CHANGE_TASK_STATUS',
+        type: CHANGE_TASK_STATUS,
         payload: {
             todoID: todoID,
             isDone: isDone,

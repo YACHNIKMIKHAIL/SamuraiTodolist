@@ -28,12 +28,14 @@ type TodolistPropsType = {
     filter: string
 }
 
-export const TodolistMemo = ({
+export const Todolist = ({
                                  todolistID,
                                  title,
                                  tasks,
                                  filter
                              }: TodolistPropsType) => {
+    console.log(`${todolistID}`)
+    console.log(tasks)
     const dispatch = useDispatch()
     const removeTask = useCallback((id: string, todolistID: string) => {
         dispatch(removeTaskAC(id, todolistID))
@@ -87,7 +89,7 @@ export const TodolistMemo = ({
     </TodolistCase>
 }
 
-export const Todolist = React.memo(TodolistMemo)
+// export const Todolist = React.memo(TodolistMemo)
 
 const TodolistCase = styled.div`
   display: flex;
