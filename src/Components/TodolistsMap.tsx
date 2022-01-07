@@ -3,6 +3,7 @@ import {Todolist, TodolistType} from "../Todolist";
 import {TasksStateType} from "../App";
 import {useSelector} from "react-redux";
 import {rootReducerType} from "./State/store";
+import {TodolistContainer} from "../TodolistContainer";
 
 type TodolistsMapPropsType = {
 
@@ -24,7 +25,7 @@ export const TodolistsMapMemo: React.FC<TodolistsMapPropsType> = (props: Todolis
                     tasksForTodo = tasks[m.id].filter(f => f.isDone)
                 }
 
-                return <Todolist
+                return <TodolistContainer
                     key={m.id}
                     todolistID={m.id}
                     title={m.title}

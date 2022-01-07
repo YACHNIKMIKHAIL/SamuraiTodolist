@@ -26,70 +26,52 @@ type TodolistPropsType = {
     title: string
     tasks: Array<TaskType>
     filter: string
+    removeTask:(id: string, todolistID: string)=>void
+    changeFilter:(filter: FilterType, todolistID: string)=>void
+    addTask:(title: string)=>void
+    changeTaskTitle:(newTitle: string, todolistID: string, id: string)=>void
+    changeTodolistTitle:(newTitle: string)=>void
+    removeTodolist:()=>void
+    changeCheckbox:(isDone: boolean, id: string)=>void
 }
 
-export const Todolist = ({
+export const TodolistMemo = ({
                                  todolistID,
                                  title,
                                  tasks,
-                                 filter
+                                 filter,...props
                              }: TodolistPropsType) => {
-    console.log(`${todolistID}`)
-    console.log(tasks)
-    const dispatch = useDispatch()
-    const removeTask = useCallback((id: string, todolistID: string) => {
-        dispatch(removeTaskAC(id, todolistID))
-    }, [dispatch, todolistID])
-    const changeFilter = useCallback((filter: FilterType, todolistID: string) => {
-        dispatch(changeTodoFilterAC(filter, todolistID))
-    }, [dispatch, filter, todolistID])
-    const addTask = useCallback((title: string) => {
-        dispatch(addTaskAC(title, todolistID))
-    }, [dispatch, title, todolistID])
-    const changeTaskTitle = useCallback((newTitle: string, todolistID: string, id: string) => {
-        dispatch(changeTaskTitleAC(newTitle, todolistID, id))
-    }, [dispatch, todolistID])
-    const changeTodolistTitle = useCallback((newTitle: string) => {
-        dispatch(changeTodoTitleAC(newTitle, todolistID))
-    }, [dispatch, todolistID])
-    const removeTodolist = useCallback(() => {
-        dispatch(removeTodoAC(todolistID))
-    }, [dispatch, todolistID])
-    const changeCheckbox = useCallback((isDone: boolean, id: string) => {
-        dispatch(changeTaskStatusAC(isDone, id, todolistID))
-    }, [dispatch, todolistID])
-
     return <TodolistCase>
 
         <TitleCase>
-            <EditableSpan title={title} callback={changeTodolistTitle}/>
-            <Button callback={removeTodolist} name={'x'}/>
+            <EditableSpan title={title} callback={props.changeTodolistTitle}/>
+            <Button callback={props.removeTodolist} name={'x'}/>
         </TitleCase>
 
         <AddFormCase>
-            <AddForm callback={addTask} title={title}/>
+            <AddForm callback={props.addTask} title={title}/>
         </AddFormCase>
 
         <TasksMapCase>
             <TasksMap tasks={tasks}
-                      removeTask={removeTask}
-                      changeTaskTitle={changeTaskTitle}
+                      removeTask={props.removeTask}
+                      changeTaskTitle={props.changeTaskTitle}
                       todolistID={todolistID}
-                      changeCheckbox={changeCheckbox}/>
+                      changeCheckbox={props.changeCheckbox}/>
         </TasksMapCase>
 
         <ButtonCase>
-            <ButtonX callback={() => changeFilter('all', todolistID)} name={'All'}
+            <ButtonX callback={() => props.changeFilter('all', todolistID)} name={'All'}
                      className={filter === 'all' ? 'active-filter' : ''}/>
-            <ButtonX callback={() => changeFilter('active', todolistID)} name={'Active'}
+            <ButtonX callback={() => props.changeFilter('active', todolistID)} name={'Active'}
                      className={filter === 'active' ? 'active-filter' : ''}/>
-            <ButtonX callback={() => changeFilter('complited', todolistID)} name={'Complited'}
+            <ButtonX callback={() => props.changeFilter('complited', todolistID)} name={'Complited'}
                      className={filter === 'complited' ? 'active-filter' : ''}/>
         </ButtonCase>
     </TodolistCase>
 }
 
-// export const Todolist = React.memo(TodolistMemo)
+export const Todolist = React.memo(TodolistMemo)
 
 const TodolistCase = styled.div`
   display: flex;
