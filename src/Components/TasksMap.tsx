@@ -1,4 +1,4 @@
-import React, {ChangeEvent} from 'react';
+import React, {ChangeEvent, useCallback} from 'react';
 import {FilterType, TaskType} from "../Todolist";
 import ButtonX from "./Button";
 import styled from "styled-components";
@@ -9,16 +9,17 @@ import {rootReducerType} from "./State/store";
 
 
 type TasksMapPropsType = {
-    filter:FilterType
+    filter: FilterType
     removeTask: (id: string, todolistID: string) => void
     changeTaskTitle: (newTitle: string, todolistID: string, id: string) => void
     todolistID: string
     changeCheckbox: (isDone: boolean, id: string, todolistID: string) => void
 }
 export const TasksMapMemo = ({removeTask, changeTaskTitle, todolistID, ...props}: TasksMapPropsType) => {
-    const changeTaskTitleX = (newTitle: string, id: string) => changeTaskTitle(newTitle, todolistID, id)
-    const removeTaskX = (id: string) => removeTask(id, todolistID)
-    const ChangeCheckboxX = (e: ChangeEvent<HTMLInputElement>, id: string) => props.changeCheckbox(e.currentTarget.checked, id, todolistID)
+    const changeTaskTitleX = useCallback((newTitle: string, id: string) => changeTaskTitle(newTitle, todolistID, id), [changeTaskTitle, todolistID])
+    const removeTaskX = useCallback((id: string) => removeTask(id, todolistID), [removeTask, todolistID])
+    const ChangeCheckboxX = useCallback((e: ChangeEvent<HTMLInputElement>, id: string) => props.changeCheckbox(e.currentTarget.checked, id, todolistID), [todolistID,props])
+
     const tasks = useSelector<rootReducerType, Array<TaskType>>(state => state.tasks[todolistID])
 
     let tasksForTodo = tasks

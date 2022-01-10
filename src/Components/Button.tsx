@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {buttonRender} from "./ButtonRender";
 
 type ButtonPropsType = {
@@ -6,8 +6,8 @@ type ButtonPropsType = {
     name: string
     className?: string
 }
-export const ButtonX =React.memo( ({callback, name, ...props}: ButtonPropsType) => {
-    const onClick = () => callback()
+export const ButtonX = React.memo(({callback, name, ...props}: ButtonPropsType) => {
+    const onClick = useCallback(() => callback(), [callback])
     return (
         <div>
             {buttonRender(name, props.className, onClick)}

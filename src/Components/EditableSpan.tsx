@@ -7,16 +7,16 @@ type EditableSpanType = {
 export const EditableSpanMemo = (props: EditableSpanType) => {
     const [edit, setEdit] = useState<boolean>(false)
     const [title, setTitle] = useState<string>('')
-
+    console.log('span')
     const activateEdit = useCallback(() => {
         setEdit(true)
         setTitle(props.title)
-    }, [edit, title])
+    }, [props.title])
     const desActivateEdit = useCallback(() => {
         setEdit(false)
         props.callback(title)
-    }, [edit, title])
-    const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => setTitle(e.currentTarget.value)
+    }, [ title,props])
+    const onChangeInput = useCallback((e: ChangeEvent<HTMLInputElement>) => setTitle(e.currentTarget.value), [])
 
     return (
         edit

@@ -8,13 +8,13 @@ type InputPropsType = {
     onKeyEnter: (e: React.KeyboardEvent<HTMLInputElement>) => void
     error: boolean
 }
-export const InputMemo = ({callback, title, onChangeInput, onKeyEnter, error, ...props}: InputPropsType) => {
+export const InputMemo = ({title, onChangeInput, onKeyEnter, error}: InputPropsType) => {
     const onChangeInputX = useCallback((e: ChangeEvent<HTMLInputElement>) => {
         onChangeInput(e)
-    },[title])
-    const onKeyEnterX = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    },[onChangeInput])
+    const onKeyEnterX =useCallback ((e: React.KeyboardEvent<HTMLInputElement>) => {
         onKeyEnter(e)
-    }
+    },[onKeyEnter])
 
     return (
         <>

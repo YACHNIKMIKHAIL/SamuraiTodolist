@@ -1,4 +1,4 @@
-import React, {ChangeEvent} from 'react';
+import React, {ChangeEvent, useCallback} from 'react';
 import CheckboxX from '@mui/material/Checkbox';
 
 type CheckboxPropsType = {
@@ -6,9 +6,10 @@ type CheckboxPropsType = {
     callback: (e: ChangeEvent<HTMLInputElement>) => void
 }
 export const CheckboxMemo = (props: CheckboxPropsType) => {
-    const onChangeCheckbox = (e: ChangeEvent<HTMLInputElement>) => {
+    console.log('checkbox')
+    const onChangeCheckbox =useCallback ((e: ChangeEvent<HTMLInputElement>) => {
         props.callback(e)
-    }
+    },[props])
 
     return (
         <CheckboxX value={props.isDone} onChange={(e) => onChangeCheckbox(e)}/>
