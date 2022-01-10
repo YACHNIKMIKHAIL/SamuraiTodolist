@@ -6,13 +6,13 @@ type ButtonPropsType = {
     name: string
     className?: string
 }
-export const ButtonX = ({callback, name, ...props}: ButtonPropsType) => {
+export const ButtonX =React.memo( ({callback, name, ...props}: ButtonPropsType) => {
     const onClick = () => callback()
     return (
         <div>
             {buttonRender(name, props.className, onClick)}
         </div>
     )
-}
+})
 
 export default ButtonX;

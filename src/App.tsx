@@ -12,12 +12,12 @@ import {AddForm} from "./Components/AddForm";
 
 export type TasksStateType = { [key: string]: Array<TaskType> }
 
-function App() {
-    const dispatch=useDispatch()
+export const App = React.memo(() => {
+    const dispatch = useDispatch()
     const addTodolist = useCallback((title: string) => {
         const newId = v1()
         dispatch(addTodoAC(newId, title))
-    },[dispatch])
+    }, [dispatch])
 
     return (
         <div className={'background'}>
@@ -32,10 +32,7 @@ function App() {
             </AppCase>
         </div>
     );
-}
-
-export default App;
-
+})
 
 const AppCase = styled.div`
   height: 100vh;
