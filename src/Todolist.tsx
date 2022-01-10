@@ -1,10 +1,7 @@
-import React, {useCallback} from 'react';
+import React from 'react';
 import styled from "styled-components";
 import Button from "./Components/Button";
 import ButtonX from "./Components/Button";
-import {addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC} from "./Components/State/TasksReducer";
-import {changeTodoFilterAC, changeTodoTitleAC, removeTodoAC} from "./Components/State/TodolistsReducer";
-import {useDispatch} from "react-redux";
 import {AddForm} from "./Components/AddForm";
 import {EditableSpan} from "./Components/EditableSpan";
 import {TasksMap} from "./Components/TasksMap";
@@ -24,22 +21,20 @@ export type TaskType = {
 type TodolistPropsType = {
     todolistID: string
     title: string
-    tasks: Array<TaskType>
-    filter: string
-    removeTask:(id: string, todolistID: string)=>void
-    changeFilter:(filter: FilterType, todolistID: string)=>void
-    addTask:(title: string)=>void
-    changeTaskTitle:(newTitle: string, todolistID: string, id: string)=>void
-    changeTodolistTitle:(newTitle: string)=>void
-    removeTodolist:()=>void
-    changeCheckbox:(isDone: boolean, id: string)=>void
+    filter: FilterType
+    removeTask: (id: string, todolistID: string) => void
+    changeFilter: (filter: FilterType, todolistID: string) => void
+    addTask: (title: string) => void
+    changeTaskTitle: (newTitle: string, todolistID: string, id: string) => void
+    changeTodolistTitle: (newTitle: string) => void
+    removeTodolist: () => void
+    changeCheckbox: (isDone: boolean, id: string) => void
 }
 
 export const TodolistMemo = ({
                                  todolistID,
                                  title,
-                                 tasks,
-                                 filter,...props
+                                 filter, ...props
                              }: TodolistPropsType) => {
     return <TodolistCase>
 
@@ -53,11 +48,11 @@ export const TodolistMemo = ({
         </AddFormCase>
 
         <TasksMapCase>
-            <TasksMap tasks={tasks}
-                      removeTask={props.removeTask}
+            <TasksMap removeTask={props.removeTask}
                       changeTaskTitle={props.changeTaskTitle}
                       todolistID={todolistID}
-                      changeCheckbox={props.changeCheckbox}/>
+                      changeCheckbox={props.changeCheckbox}
+                      filter={filter}/>
         </TasksMapCase>
 
         <ButtonCase>

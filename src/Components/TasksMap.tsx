@@ -1,27 +1,36 @@
 import React, {ChangeEvent} from 'react';
-import {TaskType} from "../Todolist";
+import {FilterType, TaskType} from "../Todolist";
 import ButtonX from "./Button";
 import styled from "styled-components";
 import {Checkbox} from "./Checkbox";
 import {EditableSpan} from "./EditableSpan";
+import {useSelector} from "react-redux";
+import {rootReducerType} from "./State/store";
 
 
 type TasksMapPropsType = {
-    tasks: Array<TaskType>
+    filter:FilterType
     removeTask: (id: string, todolistID: string) => void
     changeTaskTitle: (newTitle: string, todolistID: string, id: string) => void
     todolistID: string
     changeCheckbox: (isDone: boolean, id: string, todolistID: string) => void
 }
-export const TasksMapMemo = ({tasks, removeTask, changeTaskTitle, todolistID, ...props}: TasksMapPropsType) => {
+export const TasksMapMemo = ({removeTask, changeTaskTitle, todolistID, ...props}: TasksMapPropsType) => {
     const changeTaskTitleX = (newTitle: string, id: string) => changeTaskTitle(newTitle, todolistID, id)
     const removeTaskX = (id: string) => removeTask(id, todolistID)
     const ChangeCheckboxX = (e: ChangeEvent<HTMLInputElement>, id: string) => props.changeCheckbox(e.currentTarget.checked, id, todolistID)
+    const tasks = useSelector<rootReducerType, Array<TaskType>>(state => state.tasks[todolistID])
 
-
+    let tasksForTodo = tasks
+    if (props.filter === 'active') {
+        tasksForTodo = tasks.filter(f => !f.isDone)
+    }
+    if (props.filter === 'complited') {
+        tasksForTodo = tasks.filter(f => f.isDone)
+    }
     return (
         <TaskCase>
-            {tasks.map(m => <LiCase key={m.id} className={m.isDone ? 'is-done' : ''}>
+            {tasksForTodo.map(m => <LiCase key={m.id} className={m.isDone ? 'is-done' : ''}>
                     <CheckboxCase>
                         <Checkbox isDone={m.isDone} callback={(e) => ChangeCheckboxX(e, m.id)}/>
                     </CheckboxCase>
