@@ -7,9 +7,9 @@ type CheckboxPropsType = {
 }
 export const CheckboxMemo = (props: CheckboxPropsType) => {
     console.log('checkbox')
-    const onChangeCheckbox =useCallback ((e: ChangeEvent<HTMLInputElement>) => {
+    const onChangeCheckbox = useCallback((e: ChangeEvent<HTMLInputElement>) => {
         props.callback(e)
-    },[props])
+    }, [props])
 
     return (
         <CheckboxX value={props.isDone} onChange={(e) => onChangeCheckbox(e)}/>

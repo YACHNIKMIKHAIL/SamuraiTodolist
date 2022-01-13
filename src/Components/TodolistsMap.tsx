@@ -16,9 +16,7 @@ export const TodolistsMapMemo: React.FC<TodolistsMapPropsType> = (props: Todolis
             {todolists.map(m => {
                 return <TodolistContainer
                     key={m.id}
-                    todolistID={m.id}
-                    title={m.title}
-                    filter={m.filter}/>
+                    todolistID={m.id}/>
             })
             }
         </>
