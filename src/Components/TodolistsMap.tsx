@@ -4,13 +4,9 @@ import {useSelector} from "react-redux";
 import {rootReducerType} from "./State/store";
 import {TodolistContainer} from "../TodolistContainer";
 
-type TodolistsMapPropsType = {
 
-}
-export const TodolistsMapMemo: React.FC<TodolistsMapPropsType> = (props: TodolistsMapPropsType) => {
+export const TodolistsMapMemo: React.FC = () => {
     const todolists = useSelector<rootReducerType, Array<TodolistType>>(state => state.todolists)
-
-
     return (
         <>
             {todolists.map(m => {

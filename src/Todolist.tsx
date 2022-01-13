@@ -1,10 +1,13 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import styled from "styled-components";
 import Button from "./Components/Button";
 import ButtonX from "./Components/Button";
 import {AddForm} from "./Components/AddForm";
 import {EditableSpan} from "./Components/EditableSpan";
 import {TasksMap} from "./Components/TasksMap";
+import {addTaskAC} from "./Components/State/TasksReducer";
+import {useDispatch} from "react-redux";
+import {Dispatch} from 'redux';
 
 export type FilterType = 'all' | 'complited' | 'active'
 export type TodolistType = {
@@ -22,13 +25,9 @@ type TodolistPropsType = {
     todolistID: string
     title: string
     filter: FilterType
-    removeTask: (id: string, todolistID: string) => void
     changeFilter: (filter: FilterType, todolistID: string) => void
-    addTask: (title: string) => void
-    changeTaskTitle: (newTitle: string, todolistID: string, id: string) => void
     changeTodolistTitle: (newTitle: string) => void
     removeTodolist: () => void
-    changeCheckbox: (isDone: boolean, id: string) => void
 }
 
 export const TodolistMemo = ({
@@ -36,23 +35,25 @@ export const TodolistMemo = ({
                                  title,
                                  filter, ...props
                              }: TodolistPropsType) => {
-    return <TodolistCase>
+    const dispatch = useDispatch<Dispatch>()
+    const addTask = useCallback((title: string) => {
+        dispatch(addTaskAC(title, todolistID))
+    }, [dispatch, todolistID])
 
+    return <TodolistCase>
         <TitleCase>
             <EditableSpan title={title} callback={props.changeTodolistTitle}/>
             <Button callback={props.removeTodolist} name={'x'}/>
         </TitleCase>
 
         <AddFormCase>
-            <AddForm callback={props.addTask} title={title}/>
+            <AddForm callback={addTask} title={title}/>
         </AddFormCase>
 
         <TasksMapCase>
-            <TasksMap removeTask={props.removeTask}
-                      changeTaskTitle={props.changeTaskTitle}
-                      todolistID={todolistID}
-                      changeCheckbox={props.changeCheckbox}
-                      filter={filter}/>
+            <TasksMap
+                todolistID={todolistID}
+            />
         </TasksMapCase>
 
         <ButtonCase>
